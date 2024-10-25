@@ -1,0 +1,178 @@
+/* Estilos generales para la navbar */
+.navbar_s {
+    display: flex;
+    align-items: center;
+    background-color: white; /* Fondo blanco para la navbar */
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para la navbar */
+    padding-top: 60px;
+    padding-bottom: 30px;
+
+    position: sticky; /* Hacer que la navbar sea sticky */
+    top: 0; /* Mantener la navbar en la parte superior de la ventana */
+    z-index: 1000;     
+}
+
+/* Estilo para el contenedor del logo */
+.logo-container {
+    margin-right: 60px; /* Espaciado a la derecha del logo */
+}
+
+/* Estilo para el logo */
+.logo {
+    width: 85px; /* Ajusta el tamaño del logo según sea necesario */
+    height: auto;
+}
+
+/* Título de la página */
+.page-title {
+    color: #1e3a5f; /* Azul marino */
+    margin-left: -40px;
+    margin-bottom: 70px;
+    font-size: 24px; /* Tamaño de fuente del título */
+}
+
+/* Espaciador para empujar las opciones a la derecha */
+.spacer {
+    flex-grow: 1; /* Toma todo el espacio disponible */
+}
+
+/* Estilos para la lista de opciones de navegación */
+.nav-options_s {
+    list-style: none; /* Quita el estilo de lista */
+    display: flex;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-options_s a {
+    text-decoration: none; /* Quita subrayado */
+    color: #1e3a5f; /* Azul marino */
+    margin-bottom: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Efecto de transición */
+    line-height: 1.2;
+    text-align: center;
+
+    padding: 17px 15px;
+
+    font-size: 17px;
+}
+
+/* Efecto hover para enlaces de navegación */
+.nav-options_s a:hover {
+    background-color: #1e3a5f; /* Fondo azul marino al pasar el mouse */
+    color: white; /* Texto blanco */
+}
+
+
+
+
+
+
+
+
+/* Contenedor de la tabla */
+.table-container {
+    
+    width: 80%; /* Porcentaje para que sea responsiva */
+    max-width: 1200px; /* Tamaño máximo */
+    margin: 0 auto; /* Centrar horizontalmente */
+    padding: 20px; /* Espaciado interno */
+    
+}
+
+/* Estilo de la tabla */
+.custom-table {
+    width: 100%; /* Hacer que la tabla ocupe el 100% del contenedor */
+    border-collapse: collapse; /* Para eliminar el espacio entre celdas */
+}
+
+/* Estilo del encabezado */
+.custom-table thead {
+    background-color: #1e3a5f; /* Azul marino */
+}
+
+.custom-table thead th {
+    color: white; /* Texto blanco */
+    padding: 10px; /* Espaciado interno */
+    text-align: center; /* Centrar texto en el encabezado */
+}
+
+/* Estilo de las celdas */
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f0f4f8; /* Gris claro */
+}
+
+.custom-table tbody tr:nth-child(odd) {
+    background-color: #e2f0f7; /* Azul marino claro */
+}
+
+.custom-table tbody td {
+    padding: 10px; /* Espaciado interno */
+    color: black; /* Texto negro */
+    text-align: center; /* Centrar el texto dentro de las celdas */
+    border: 1px solid #ccc; /* Línea de separación en gris claro */
+}
+
+/* Estilo para los botones en la tabla */
+.custom-table tbody td button {
+    padding: 5px 10px; /* Espaciado del botón */
+    background-color: #1e3a5f; /* Azul marino */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Efecto de transición */
+}
+
+/* Efecto hover para los botones */
+.custom-table tbody td button:hover {
+    background-color: #14273c; /* Cambia a un azul más oscuro al pasar el mouse */
+}
+
+
+
+/* Contenedor para los botones */
+.button-container {
+    display: flex; /* Usar flexbox para alinear los botones */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    gap: 20px; /* Espacio entre los botones */
+    margin: 20px 0; /* Espaciado vertical */
+    padding-bottom: 50px;
+}
+
+/* Estilo del botón de subir examen */
+.submit-button {
+    background-color: #1e3a5f; /* Azul marino */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Efecto de transición */
+}
+
+/* Efecto hover para el botón de subir examen */
+.submit-button:hover {
+    background-color: #14273c; /* Azul más oscuro al pasar el mouse */
+}
+
+/* Estilo del botón de cancelar */
+.cancel-button {
+    background-color: red; /* Rojo */
+    color: white; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Efecto de transición */
+}
+
+/* Efecto hover para el botón de cancelar */
+.cancel-button:hover {
+    background-color: darkred; /* Rojo más oscuro al pasar el mouse */
+}

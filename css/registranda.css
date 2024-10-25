@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e3a5f; /* Azul marino */
+}
+
+.form-container {
+    background-color: #fff;
+    border-radius: 20px; /* Borde circular */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 55%;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-weight: bold;
+    color: #1e3a5f;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    color: #1e3a5f;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 18px;
+
+    padding-left: 13%;
+}
+#registroForm input{
+    width: 70%;
+    margin-bottom: 40px;
+
+}
+
+#tit{
+    display: block;
+    color: #1e3a5f;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.form-container input, .form-container select {
+    all: unset;
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.form-container input:focus, .form-container select:focus {
+    border: 1px solid #1e3a5f; /* Bordes con tu color azul marino */
+}
+
+.error-text {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 150px;
+    padding: 10px;
+    background-color: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #14273c;
+    color: white;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    width: 150px; /* Ajusta el tamaño del contenedor de la imagen */
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Si deseas imágenes circulares */
+}
+
+
+/* Estilo personalizado para el modal */
+.modal_s {
+    display: none;
+    position: fixed;
+    z-index: 1003;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content_s {
+    padding: 24px;
+    text-align: center;
+}
+
+.modal-footer_s {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+}
+
+.btn_s {
+    background-color: #00796B; /* Color verde */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn_s:hover {
+    background-color: #004D40;
+}
+
+/* Estilos adicionales para el modal */
+.modal-close_s {
+    background-color: #E57373; /* Color rojo */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-close_s:hover {
+    background-color: #D32F2F;
+}
+
+
+
+.modal_ex {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 1000; /* Encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+}
+
+.modal-content_ex {
+    background-color: #fff;
+    margin: 15% auto; /* Centrado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo */
+    text-align: center; /* Centrar texto */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #1b0064; /* Color verde */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #3d22ac; /* Color verde más oscuro al pasar el mouse */
+}
+

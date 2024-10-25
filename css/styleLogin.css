@@ -1,0 +1,211 @@
+#divRegistro #nuew {
+    color: #14273c;
+    text-decoration: underline; /* Agrega la línea debajo del enlace */
+}
+
+#divRegistro #nuew:hover {
+    color: #486886; /* Cambia el color al pasar el mouse */
+    text-decoration: underline; /* Asegura que la línea se mantenga en hover */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e3a5f; /* Azul marino */
+}
+
+.form-container {
+    background-color: #fff;
+    border-radius: 20px; /* Borde circular */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 55%;
+    height: 550px;
+
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+form {
+    width: 100%;
+    text-align: center;
+}
+.cabe{
+    text-align: center;
+
+}
+
+
+h2, h3, h4 {
+    font-weight: bold;
+    color: #1e3a5f;
+    margin-bottom: 60px;
+    margin-top: 20px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    width: 150px; /* Ajusta el tamaño del contenedor de la imagen */
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Si deseas imágenes circulares */
+}
+
+
+label {
+    display: block;
+    color: #1e3a5f;
+    margin-bottom: 12px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.form-container input {
+    all: unset; /* Esto elimina todos los estilos aplicados, incluido el de Materialize */
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Vuelve a aplicar tus estilos personalizados */
+.form-container input:focus {
+    border: 1px solid #1e3a5f; /* Bordes con tu color azul marino */
+}
+
+button {
+    width: 80%;
+    padding: 10px;
+    background-color: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #14273c;
+    color: white;
+}
+
+
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Centrar horizontalmente los botones */
+    align-items: center; 
+
+}
+
+/* Estilos comunes para ambos botones */
+.toggle-button {
+    all: unset;
+    width: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-size: 16px;
+}
+
+/* Estilo del botón desmarcado (blanco por defecto) */
+.unselected {
+    background-color: white;
+    color: #1e3a5f;
+    border: 1px solid #1e3a5f;
+    box-shadow: none;
+}
+
+/* Estilo del botón marcado (azul oscuro con borde/sombra) */
+.selected {
+    background-color: #1e3a5f;
+    color: white;
+    box-shadow: 0 0 10px rgba(30, 58, 95, 0.5); /* Sombra con azul transparente */
+}
+
+
+
+
+/* Estilos del modal */
+/* Estilos del modal */
+.modal_S {
+    padding-top: 100px;
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Posición fija */
+    z-index: 1; /* Asegúrate de que esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Habilitar desplazamiento si es necesario */
+    background-color: rgba(0, 0, 0, 0.4);/* Fondo negro con opacidad */
+}
+
+/* Estilos del contenido del modal */
+.modal-content_S {
+    background-color: #fefefe; /* Fondo blanco */
+    margin: 10% auto; /* Margen superior y centrado */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #888; /* Borde */
+    width: 40%; /* Ancho del modal */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-bottom: 200px;
+    position: relative; /* Posición relativa para el botón de cierre */
+}
+
+/* Estilos del botón de cierre */
+.close {
+    color: #aaa; /* Color de la "X" */
+    float: right; /* Alinear a la derecha */
+    font-size: 28px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    position: absolute; /* Posición absoluta para centrarlo */
+    right: 20px; /* Ajusta la posición a la derecha */
+    top: 20px; /* Ajusta la posición hacia arriba */
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Color al pasar el mouse */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cursor de mano */
+}
+
+#modalMessage{
+    font-size: 22px;
+    font-weight: bold;
+
+}

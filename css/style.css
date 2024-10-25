@@ -1,0 +1,324 @@
+
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+.navPadding{
+  padding-left: 4%;
+  padding-right: 4%;
+  
+
+}
+h5{
+  font-weight: bolder;
+}
+.nava{
+
+  height: 68px;
+  position: sticky;
+  top: 0;
+  z-index: 999;  
+  margin-bottom: -70px;
+}
+.minusTop{
+  margin-top: -4%;
+
+}
+#grueso{
+  font-weight: bold;
+  text-shadow: 
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+
+}
+.sombre{
+  text-shadow: 
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+
+
+}
+.card-content{
+
+  text-align: justify;
+}
+.rojizo{
+  color: rgb(160, 0, 67);
+
+
+}
+.fondoBlanco{
+  background-color: rgba(255, 255, 255, 0.764);
+  margin-bottom: -20px;
+  
+
+}
+
+.centrado{
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column; 
+  
+  align-items: center;    
+}
+
+.ccc{
+  display: flex;
+  flex-direction: column; 
+  
+  align-items: center;   
+
+}
+body{
+  background-image:url("n1.jpg");
+  background-size: cover;
+
+  transition: background-image 1s ease-in-out;
+
+}
+
+.arri{
+  margin-top: -2%;
+}
+
+#modal1{
+  width: 60%;
+  /* padding-right: 20px; */
+}
+
+#mmo{
+  
+  /* padding-left: 20%; */
+  /* width: 80%; */
+
+}
+
+#baseForm{
+  margin-top: 10px;
+  margin-bottom: 70px;
+  background-color: white;
+  width: 70%;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;     
+  align-items: center;   
+  
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+
+  
+
+  
+}
+.modal {
+  overflow-x: hidden; /* Oculta el scrollbar horizontal */
+}
+#baseFormM{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 50PX;
+  background-color: white;
+  width: 100%;
+  /* border-radius: 15px; */
+
+  display: flex;
+  flex-direction: column;     
+  align-items: center;   
+
+  padding-left: 40px;
+  
+  /* box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);   */
+
+}
+
+#baseFormRes{
+  margin-top: 10px;
+  margin-bottom: 70px;
+  background-color: white;
+  width: 80%;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;     
+  align-items: center;   
+  
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+
+  
+}
+.imgC{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+.midTitulo, .titExamen{
+  margin-top: 20%;
+  font-size: 18px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+
+}
+
+.menosD{
+  background-color: aqua;
+}
+
+#labelFechGran{
+  font-size: 19px;
+
+}
+.laboloso{
+  font-size: 15px;
+  padding-right: 280px;
+  margin-bottom: -20px;
+
+}
+
+.tt input{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.horizon{
+  /* background-color: red; */
+  width: 80%;
+  display: flex;
+}
+
+.tama60{
+  width: 60%;
+  padding-right: 5%;  
+
+}
+.tama20{
+  width: 20%;
+  padding-right: 5%;  
+
+}
+.tama40{
+  width: 40%;
+  padding-right: 5%;  
+}
+.tama50{
+  width: 50%;
+  padding-right: 5%;
+}
+.tama25{
+  width: 25%;
+  padding-right: 5%;  
+}
+.tama33{
+  width: 33%;
+  margin-right: 22%;  
+ 
+}
+.tama30{
+  width: 30%;
+  padding-right: 5%;  
+}
+.tama70{
+  width: 70%;
+  padding-right: 5%;  
+}
+.tama80{
+  width: 80%;
+  padding-right: 5%;  
+}
+.tama10{
+  width: 10%;
+  padding-right: 5%;  
+}
+.tama90{
+  width: 90%;
+  padding-right: 5%;  
+}
+.tama100{
+  width: 100%;
+  padding-right: 5%;  
+}
+/* #txtContraC{
+  border-bottom: 1px solid red;
+} */
+
+.tama60 .input-field{
+  margin-bottom: 10px;
+}
+
+#txtFecha{
+  font-size: 20px;
+}
+
+.indicacionG{
+  font-size: 19px;
+
+}
+.paddL{
+  padding-left: 20%;
+}
+
+.horizon_t100{
+  width: 100%;
+  display: flex;
+}
+
+.sepaBox p{
+  margin-right: 70px;
+}
+.sepaBox span{
+  color: #000;
+  white-space: nowrap;
+}
+
+.mgTop{
+  margin-top: 30px;
+}
+
+hr{
+
+  width: 80%;
+}
+
+#colorResfav{
+  border-radius: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: black;
+
+}
+
+#contenedorPDFRes{
+  width: 100%;
+}
+
+#tablasPreguntas table{
+  background-color: rgb(190, 190, 190);
+
+}
+
+#tablasPreguntas table thead tr th, td{
+  text-align: center;
+
+}
+
+#tablasPreguntas th{
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+
+
+
+
