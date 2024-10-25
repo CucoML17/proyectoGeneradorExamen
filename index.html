@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Inicio de sesión</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+  <!-- CSS propio -->
+  
+    <link rel="stylesheet" href="css/styleLogin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="cabe">
+            <div class="header-container">
+                <div class="image-container">
+                    <img src="img/logos/logoTecnm.png" alt="Imagen izquierda">
+                </div>
+                <h4>Instituto tecnológico de Chilpancingo</h4>
+                <div class="image-container">
+                    <img src="img/logos/logoTecnm.png" alt="Imagen derecha">
+                </div>
+            </div>
+
+
+            <div class="button-container">
+                <button id="button1" class="toggle-button selected" onclick="toggleButtons(0)">Docente</button>
+                <button id="button2" class="toggle-button unselected" onclick="toggleButtons(1)">Estudiante</button>
+            </div>            
+        </div>
+        <form id="loginForm">
+
+        
+            <input type="hidden" id="buttonValue" value="0">
+
+
+            <label for="txtNombre">Nombre de usuario:</label>
+            <input type="text" id="txtNombre" name="txtNombre" placeholder="Ingresa tu usuario" required>
+            <label for="txtContra">Contraseña:</label>
+            
+            <input type="password" id="txtContra" name="txtContra" placeholder="Ingresa tu contraseña" required>
+
+            
+            <div id="divRegistro">
+              <br>
+              <br>
+            </div>
+            
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>    
+  
+
+    <!-- Modal bb -->
+    <div id="errorModal" class="modal_S">
+        <div class="modal-content_S">
+            <span class="close" id="closeModal">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+
+   <!-- <script type="module" src="js/creacionPreguntas.js">
+
+   </script> -->
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+   <script type="module" src="js/inicioSesion.js"></script>
+   <script type="module" src="js/fireBase.js"></script>
+   <script>
+    function toggleButtons(selectedIndex) {
+      // Obtener los botones
+      const button1 = document.getElementById('button1');
+      const button2 = document.getElementById('button2');
+      const buttonValue = document.getElementById('buttonValue');
+      const divRegistro = document.getElementById('divRegistro'); 
+  
+      
+      if (selectedIndex === 0) {
+          button1.classList.add('selected');
+          button1.classList.remove('unselected');
+          button2.classList.add('unselected');
+          button2.classList.remove('selected');
+          buttonValue.value = "0"; 
+          
+          
+          divRegistro.innerHTML = '<br><br>';
+      }
+  
+     
+      if (selectedIndex === 1) {
+          button2.classList.add('selected');
+          button2.classList.remove('unselected');
+          button1.classList.add('unselected');
+          button1.classList.remove('selected');
+          buttonValue.value = "1"; 
+          
+          
+          divRegistro.innerHTML = `
+              <br>
+              <a id="nuew" href="registrarNuevoAlumno_Alumno.html">Registrarse a la clase</a>
+              <br><br>
+          `;
+      }
+  }
+  
+
+   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+    });
+  
+    // Or with jQuery
+  
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  </script>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
+  
+    // Or with jQuery
+  
+    $(document).ready(function(){
+      $('.modal').modal();
+    });    
+  </script>
+  <script>
+
+  </script>
+
+  </body>
+</html>

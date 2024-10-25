@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+  <!-- CSS propio -->
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/panelMaestroEstilo.css">
+
+    <title>Panel de control del maestro</title>
+</head>
+<body>
+    <nav class="navbar_s">
+        <div class="logo-container">
+            <img src="img/logos/tecojote.png" alt="Logo" class="logo"> <!-- Asegúrate de tener la imagen del logo -->
+        </div>
+        <h1 class="page-title">Sistema de preguntas</h1>
+        <div class="spacer"></div> <!-- Espaciador para empujar los elementos a la derecha -->
+        <ul class="nav-options_s">
+            <li><a href="nuevoExamen.html">Nuevo examen</a></li>
+            <li><a href="panelMaestro.html">Ver exámenes</a></li>
+            <li><a href="#">Ver exámenes cerrados</a></li>
+            <li><a href="clase.html">Datos de la clase</a></li>
+            <li><a href="index.html">Cerrar sesión</a></li>
+        </ul>
+    </nav>
+
+    <br><br>
+    <div class="table-container" id="totExams">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Título del examen</th>
+                    <th>Estado</th>
+                    <th>Cantidad de intentos</th>
+                    <th>Duración del examén</th>
+                    <th>Fecha y hora de cierre</th>
+                   
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Examen 1</td>
+                    <td>Finalizado</td>
+                    <td>2</td>
+                    <td>2 horas</td>
+                    <td>2024-10-01 10:00</td>
+                    <td>Editando</td>
+                    <td><button>Ver y editar</button> <br><button>Publicar</button><br><button>Borrar</button></td>
+                </tr>
+                <tr>
+                    <td>Examen 2</td>
+                    <td>En curso</td>
+                    <td>1</td>
+                    <td>2 horas</td>
+                    <td>2024-10-10 15:30</td>
+                    <td>Editando</td>
+                    <td><button>Ver y editar</button> <br><button>Publicar</button><br><button>Borrar</button></td>
+                </tr>
+                <tr>
+                    <td>Examen 3</td>
+                    <td>Finalizado</td>
+                    <td>3</td>
+                    <td>2 horas</td>
+                    <td>2024-10-15 09:45</td>
+                    <td>Editando</td>
+                    <td><button>Ver y editar</button> <br><button>Publicar</button><br><button>Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    <div class="form-container">
+        <!-- Aquí iría tu formulario -->
+    </div>
+
+    <!-- Modales -->
+<!-- Modal de Confirmación -->
+<div id="modalConfirmacion" class="modal_pnl">
+    <div class="modal-content_pnl">
+        <span class="close" id="btn-cerrar-modal">&times;</span>
+        <h5>Confirmar Publicación</h5>
+        <p>¿Estás seguro de que deseas publicar este examen? No podrás editarlo después de esto.</p>
+        <button id="btn-confirmar-publicar">Publicar</button>
+     
+    </div>
+</div>
+
+
+
+<div id="modalConfirmacionBorrado" class="modal_pnl">
+    <div class="modal-content_pnl">
+        <span class="close" id="btn-cerrar-modal_borrado">&times;</span>
+        <h5>Confirmación de Borrado</h5>
+        <p>¿Está seguro de que desea borrar este examen?</p>
+        <button id="btn-confirmar-borrar" class="btn">Confirmar</button>
+    </div>
+
+</div>
+
+<div id="modalExitoBorra" class="modal_pnl">
+    <div class="modal-content_pnl">
+        <h4>Éxito</h4>
+        <p>El examen ha sido borrado exitosamente.</p>
+        <button id="btn-cerrar-modal-exito_borrade" class="btn">Cerrar</button>
+    </div>
+    
+</div>
+
+
+
+
+
+    <!-- Script -->
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+  
+
+     <script type="module" src="js/fireBase.js"></script>
+     <script type="module" src="js/panelMtro.js">
+
+  
+     </script>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, options);
+      });
+    
+      // Or with jQuery
+    
+      $(document).ready(function(){
+        $('select').formSelect();
+      });
+    </script>
+  
+    <script>
+  
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+      });
+    
+      // Or with jQuery
+    
+      $(document).ready(function(){
+        $('.modal').modal();
+      });    
+    </script>    
+</body>
+</html>

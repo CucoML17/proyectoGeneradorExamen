@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Formulario</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+  <!-- CSS propio -->
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="css/nuevoExamenEstilo.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/toast.css">
+
+</head>
+<body>
+  <nav class="navbar_s">
+    <div class="logo-container">
+        <img src="img/logos/tecojote.png" alt="Logo" class="logo"> <!-- Asegúrate de tener la imagen del logo -->
+    </div>
+    <h1 class="page-title">Sistema de preguntas</h1>
+    <div class="spacer"></div> <!-- Espaciador para empujar los elementos a la derecha -->
+    <ul class="nav-options_s">
+        <li><a href="nuevoExamen.html">Nuevo examen</a></li>
+        <li><a href="panelMaestro.html">Ver exámenes</a></li>
+        <li><a href="#">Ver exámenes cerrados</a></li>
+        <li><a href="clase.html">Datos de la clase</a></li>
+        <li><a href="index.html">Cerrar sesión</a></li>
+    </ul>
+</nav>
+
+  <div class="fondoBlanco" >
+  
+
+    <div id="toastContainer" class="toast-container"></div>
+
+
+
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+
+  
+
+    </div>
+  </div>
+
+  <div class="centrado">
+    <form id="baseForm">
+      <div class="horizon">
+
+          <div class="tama25 imgC">
+            <img class="materialboxed circle" width="100" src="img/logos/logoTecnm.png" alt="" style="border: 1px solid rgba(0, 0, 0, 0.356)">
+          </div>
+          <div class="tama50" style="text-align: center;">
+            <p class="titExamen">
+              Diseñador del examén
+          </p>
+          </div>
+          <div class="tama25 imgC">
+            <img class="materialboxed circle" width="100" src="img/logos/logoTecnm.png" alt="" style="border: 1px solid rgba(0, 0, 0, 0.356)">
+          </div>
+              
+      </div>
+
+      <!-- Opciones -->
+        <h4>Opciones del examén</h4>
+        <div class="horizon">
+          <div class="tama10">
+
+          </div>
+          <div class="tama80">
+            <div class="input-field">
+              <i class="material-icons prefix">border_color</i>
+              <input id="txtTit" type="text" class="validate" required>
+              <label for="txtTit">Título del examén. . .</label>
+            </div>
+          </div>
+
+
+        </div>
+        <br>
+        <div class="horizon">
+          <div class="tama10">
+
+          </div>
+          <div class="tama40">
+            <div class="input-field">
+              <i class="material-icons prefix">date_range</i>
+              <input id="txtFecha" type="date" class="validate" required>
+              <label id="labelFechGran" for="txtFecha">Fecha de finalización</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="horizon">
+          <div class="tama10">
+
+          </div>
+          <div class="tama40">
+            <div class="input-field">
+              <i class="material-icons prefix">access_time</i>
+              <input id="txtHora" type="time" class="validate" required>
+              <label id="labelFechGran" for="txtHora">Hora de finalización</label>
+            </div>
+          </div>
+        </div>        
+        
+        <!-- La parte del tiempo -->
+         <div class="laboloso">
+          <p>Tiempo de duración del examen</p>
+         </div>
+        
+        <div class="horizon">
+          <div class="tama10">
+
+          </div>
+          <div class="tama30">
+            <!--  -->
+            <div class="input-field">
+              <i class="material-icons prefix">timer_off</i>
+              <input id="txtTempoHoras" type="number" class="validate" required max="12" min="0" value="0">
+              <label for="txtTempoHoras">Horas: </label>
+            </div>
+          </div>
+
+          <div class="tama30">
+
+            <div class="input-field">
+              <i class="material-icons prefix">timer_off</i>
+              <input id="txtTempoMins" type="number" class="validate" required max="59" min="1" value="1">
+              <label for="txtTempoMins">Minutos: </label>
+            </div>
+          </div>          
+
+
+        </div>
+        
+        <div class="horizon">
+          <div class="tama10">
+
+          </div>
+          <div class="tama80">
+            <div class="input-field">
+              <i class="material-icons prefix">warning</i>
+              <input id="txtNumIntentos" type="number" class="validate" required min="1" value="1">
+              <label for="txtNumIntentos">Número de intentos</label>
+            </div>
+          </div>
+
+
+        </div>        
+
+
+      <br>
+      <hr>
+
+      <!-- Fin opciones -->
+
+      <h4>Creador de preguntas</h4>        
+          <!-- Comienzan los input -->
+           <!-- 1.Input de text -->
+          <div class="horizon">
+            <div class="tama10">
+
+            </div>
+            <div class="tama80">
+              <div class="input-field">
+                <i class="material-icons prefix">add_circle</i>
+                <input id="txtPregunta" type="text" class="validate" required>
+                <label for="txtPregunta">Formular pregunta. . .</label>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- El display para el tipo de pregunta -->
+          <div class="horizon">
+                <!-- Combo box -->
+                <div class="tama10">
+
+                </div>
+
+              <div class="input-field tama80">
+
+              <p>Tipo de pregunta:</p>
+            
+              <select class="browser-default" id="cmbTipoPregunta" style="border: 1px solid black;">
+                <!-- <option value="" disabled selected>Elige el tipo de pregunta</option> -->
+                <option value="uni">Una sola opción correcta</option>
+                <option value="multi">Multiples opciones correctas</option>
+              </select>
+              </div>  
+          </div>  
+
+          <!-- Lugar donde van las preguntas -->
+           <!-- Radio buttonas -->
+          <div id="preguntas" class="tama100" style="margin-left: 300px;">
+
+
+          <div class="horizon">
+
+            <div class="tama10"></div>
+
+            <div class="tama90">
+                <p class="indicacionG">Escribe las respuestas a tu pregunta. . .</p>
+
+                <div class="horizon">
+                    <div class="tama90">
+
+                      <div class="input-field">
+                        <i class="material-icons prefix">panorama_fish_eye</i>
+                        <input id="txtApeM" type="text" class="validate">
+                        <label for="txtApeM">Opción A</label>
+                        
+                      </div> 
+
+                    </div>
+                    <div class="tama10">
+                      <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+
+                    </div>
+
+                </div>
+
+                <div class="horizon">
+                  <div class="tama90">
+
+                    <div class="input-field">
+                      <i class="material-icons prefix">panorama_fish_eye</i>
+                      <input id="txtApeM" type="text" class="validate">
+                      <label for="txtApeM">Opción B</label>
+                      
+                    </div> 
+
+                  </div>
+                  <div class="tama10">
+                    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+
+                  </div>
+
+              </div>
+              <a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+
+   
+
+               
+              
+
+            </div>
+
+          </div>
+
+          <!-- Las chkboxes -->
+
+
+          <div class="horizon">
+
+            <div class="tama10"></div>
+
+            <div class="tama90" >
+                <p class="indicacionG">Escribe las respuestas a tu pregunta. . .</p>
+
+                <div class="horizon">
+                    <div class="tama90">
+
+                      <div class="input-field">
+                        <i class="material-icons prefix">panorama_wide_angle</i>
+                        <input id="txtApeM" type="text" class="validate">
+                        <label for="txtApeM">Opción A</label>
+                        
+                      </div> 
+
+                    </div>
+                    <div class="tama10">
+                      <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+
+                    </div>
+
+                </div>
+
+                <div class="horizon">
+                  <div class="tama90">
+
+                    <div class="input-field">
+                      <i class="material-icons prefix">panorama_wide_angle</i>
+                      <input id="txtApeM" type="text" class="validate">
+                      <label for="txtApeM">Opción B</label>
+                      
+                    </div> 
+
+                  </div>
+                  <div class="tama10">
+                    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+
+                  </div>
+
+              </div>
+              <a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+
+   
+
+               
+              
+
+            </div>
+
+          </div> 
+          
+        </div>
+          <br>
+          <br>
+
+          <!-- Lugar donde se puede escoger la respuesta correcta: -->
+          <div class="horizon" id="opcionCorrectaF">
+
+            <div class="tama10"></div>
+
+            <div class="tama80" id="s">
+              <p class="indicacionG">Elige la respuesta correcta</p>
+              <div class="input-field col s12">
+                <select>
+                  <optgroup label="Solo una">
+                    <option value="1">Opción A</option>
+                    <option value="2">Opción B</option>
+                  </optgroup>
+
+                </select>
+                <!-- <label>Optgroups</label> -->
+              </div>
+
+              <br><br>
+              <p class="indicacionG">Elige la respuesta correcta</p>
+              <div class="input-field col s12">
+                <select multiple>
+                  <!-- <option value="" disabled selected>Choose your option</option> -->
+                  <option value="1">Opción A</option>
+                  <option value="2">Opción B</option>
+                  <option value="3">Opción C</option>
+                </select>
+                <!-- <label>Materialize Multiple Select</label> -->
+              </div>
+
+
+            </div>
+
+          </div>          
+
+
+
+
+          <div class="horizon" style="margin-bottom: 10px;">
+  
+            <div class="tama50" style=" padding-left:38%;">
+              
+              <button class="btn waves-effect waves-light" type="submit" name="action" style="width: 250px; margin-left:-40px;">Guardar pregunta
+                <i class="material-icons right">save</i>
+              </button>
+                
+  
+            </div>
+   
+       
+
+          </div>    
+          
+      
+
+
+    </form>
+              <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
+
+          <!-- Modal Structure -------------------------------------------------------------------------------------------------->
+          <div id="modal1" class="modal">
+            <div class="modal-content" id="mmo">
+   
+              <form id="baseFormM">
+                <div class="horizon">
+
+                  <div class="tama25 imgC">
+                    <img class="materialboxed circle" width="100" src="img/logos/logoTecnm.png" alt="" style="border: 1px solid rgba(0, 0, 0, 0.356)">
+                  </div>
+                  <div class="tama50" style="text-align: center;">
+                    <p class="titExamen">
+                      Diseñador de preguntas
+                  </p>
+                  </div>
+                  <div class="tama25 imgC">
+                    <img class="materialboxed circle" width="100" src="img/logos/logoTecnm.png" alt="" style="border: 1px solid rgba(0, 0, 0, 0.356)">
+                  </div>
+                      
+              </div>
+
+                <!-- Comienzan los input -->
+                <!-- 1.Input de text -->
+                <div class="horizon">
+                  <div class="tama10"></div>
+                  <div class="tama80">
+                    <div class="input-field">
+                      <i class="material-icons prefix">add_circle</i>
+                      <input id="txtPreguntaM" type="text" class="validate" required>
+                      <label for="txtPreguntaM">Formular pregunta. . .</label>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- El display para el tipo de pregunta -->
+                <div class="horizon">
+                  <!-- Combo box -->
+                  <div class="tama10"></div>
+                  <div class="input-field tama80">
+                    <p>Tipo de pregunta:</p>
+                    <select class="browser-default" id="cmbTipoPreguntaM" style="border: 1px solid black;">
+                      <option value="uni">Una sola opción correcta</option>
+                      <option value="multi">Multiples opciones correctas</option>
+                    </select>
+                  </div>
+                </div>
+              
+                <!-- Lugar donde van las preguntas -->
+                <div id="preguntasM" class="tama100" style="margin-left: 200px;">
+                  <div class="horizon">
+                    <div class="tama10"></div>
+                    <div class="tama90">
+                      <p class="indicacionG">Escribe las respuestas a tu pregunta. . .</p>
+              
+                      <div class="horizon">
+                        <div class="tama90">
+                          <div class="input-field">
+                            <i class="material-icons prefix">panorama_fish_eye</i>
+                            <input id="txtOpcionAM" type="text" class="validate">
+                            <label for="txtOpcionAM">Opción A</label>
+                          </div>
+                        </div>
+                        <div class="tama10">
+                          <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+                        </div>
+                      </div>
+              
+                      <!-- <div class="horizon">
+                        <div class="tama90">
+                          <div class="input-field">
+                            <i class="material-icons prefix">panorama_fish_eye</i>
+                            <input id="txtOpcionBM" type="text" class="validate">
+                            <label for="txtOpcionBM">Opción B</label>
+                          </div>
+                        </div>
+                        <div class="tama10">
+                          <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+                        </div>
+                      </div>
+              
+                      <a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a> -->
+              
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Las chkboxes -->
+                <!-- <div class="horizon">
+                  <div class="tama10"></div>
+                  <div class="tama90">
+                    <p class="indicacionG">Escribe las respuestas a tu pregunta. . .</p>
+              
+                    <div class="horizon">
+                      <div class="tama90">
+                        <div class="input-field">
+                          <i class="material-icons prefix">panorama_wide_angle</i>
+                          <input id="txtOpcionAM" type="text" class="validate">
+                          <label for="txtOpcionAM">Opción A</label>
+                        </div>
+                      </div>
+                      <div class="tama10">
+                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+                      </div>
+                    </div>
+              
+                    <div class="horizon">
+                      <div class="tama90">
+                        <div class="input-field">
+                          <i class="material-icons prefix">panorama_wide_angle</i>
+                          <input id="txtOpcionBM" type="text" class="validate">
+                          <label for="txtOpcionBM">Opción B</label>
+                        </div>
+                      </div>
+                      <div class="tama10">
+                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">clear</i></a>
+                      </div>
+                    </div>
+              
+                    <a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+              
+                  </div>
+                </div> -->
+              
+                <br><br>
+              
+                <!-- Lugar donde se puede escoger la respuesta correcta: -->
+                <div class="horizon" id="opcionCorrectaFM">
+                  <div class="tama10"></div>
+                  <div class="tama80" id="s">
+                    <p class="indicacionG">Elige la respuesta correcta</p>
+                    <div class="input-field col s12">
+                      <select>
+                        <optgroup label="Solo una">
+                          <option value="1">Opción A</option>
+                          <option value="2">Opción B</option>
+                        </optgroup>
+                      </select>
+                    </div>
+              
+                    <br><br>
+                    <p class="indicacionG">Elige la respuesta correcta</p>
+                    <div class="input-field col s12">
+                      <select multiple>
+                        <option value="1">Opción A</option>
+                        <option value="2">Opción B</option>
+                        <option value="3">Opción C</option>
+                      </select>
+                    </div>
+              
+                  </div>
+                </div>
+              
+                <div class="horizon" style="margin-bottom: 10px;">
+                  <div class="tama50" style="padding-left:38%;">
+                    <button id="btnEditar" class="btn waves-effect waves-light" type="submit" name="action" style="width: 150px;">Guardar
+                      <i class="material-icons right">save</i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+              
+
+
+            </div>
+
+          </div>   
+          
+        <!-- Modal Structure -------------------------------------------------------------------------------------------------->          
+    <hr>
+
+          <!-- Lugar donde se van a ver las preguntas guardadas en firebase -->
+          <div id="tablasPreguntas" class="table-container">
+            <div class="horizon" class="tama100">
+
+              
+
+              <div class="tama100">
+                <table class="striped" style="width: 100%;">
+                  <thead>
+                    <tr>
+                        <th>Número</th>
+
+                        <th>Pregunta</th>
+
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>E</th>
+
+                        <th>Respuesta</th>
+
+                        <th>Opciones</th>
+                        
+                    </tr>
+                  </thead>
+          
+                  <tbody>
+                    <tr>
+                      <td>Alvin</td>
+                      <td>Eclair</td>
+                      <td>$0.87</td>
+                    </tr>
+                    <tr>
+                      <td>Alan</td>
+                      <td>Jellybean</td>
+                      <td>$3.76</td>
+                    </tr>
+                    <tr>
+                      <td>Jonathan</td>
+                      <td>Lollipop</td>
+                      <td>$7.00</td>
+                    </tr>
+                  </tbody>
+                </table>                
+
+              </div>
+
+            </div>
+
+          </div>    
+
+ 
+
+  </div>  
+
+  <div class="button-container">
+    <button class="submit-button" id="btnSubirEx">Subir examen</button>
+    <button class="cancel-button" id="brnCancelarEx">Cancelar</button>
+  </div>
+
+
+
+  <!-- Modal borrar -->
+  <div id="modalDelete" class="modal">
+    <div class="modal-content">
+        <h4>Confirmar Eliminación</h4>
+        <p>¿En verdad desea borrar la pregunta "<span id="preguntaEliminar"></span>"?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+        <a href="#!" id="btnConfirmarEliminar" class="modal-close waves-effect waves-red btn-flat">Eliminar</a>
+    </div>
+</div>
+
+<!-- Modal aceptar -->
+
+<div id="modalExito" class="modal">
+  <div class="modal-content">
+    <h4>Examen guardado con éxito</h4>
+    <p>El examen ha sido guardado correctamente.</p>
+  </div>
+  <div class="modal-footer">
+    <button id="btnCerrarModal" class="modal-close btn">Aceptar</button>
+  </div>
+</div>
+
+
+<div id="modalConfirm" class="modal">
+  <div class="modal-content">
+      <h4>¿Seguro de borrar el examen?</h4>
+      <p>Esta acción eliminará todas las preguntas asociadas a este examen.</p>
+  </div>
+  <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <a href="#!" id="btnConfirmDelete" class="modal-close waves-effect waves-red btn-flat">Aceptar</a>
+  </div>
+</div>
+
+<div id="modalSuccess" class="modal">
+  <div class="modal-content">
+      <h4>Examen eliminado</h4>
+      <p>Las preguntas han sido eliminadas exitosamente.</p>
+  </div>
+  <div class="modal-footer">
+      <a href="#!" id="btnCloseSuccess" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+  </div>
+</div>
+  
+ <!-- Exito -->
+ <div id="modalExito2" class="modal">
+  <div class="modal-content">
+      <h4>Éxito</h4>
+      <p>Los datos han sido editados exitosamente.</p>
+  </div>
+  <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+  </div>
+</div>
+
+
+</div>
+
+  <footer class="page-footer #1565c0 blue darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Instituto tecnológico de Chilpancingo</h5>
+          <p class="grey-text text-lighten-4">
+           Somos estudiantes de la carrera de ingeniería en Sistemas computacionales cursando la asignatura de programación web.
+          </p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contacto</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Facebook</a></li>
+            <li><a class="white-text" href="#!">Instagram</a></li>
+            <li><a class="white-text" href="#!">X o Twitter</a></li>
+            <li><a class="white-text" href="#!">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Elaborado por: </h5>
+          <ul>
+            <li><a class="white-text" href="#!">Mejía López Carlos Abel</a></li>
+            <li><a class="white-text" href="#!">Pelaez Zacapala Karla Getsemaní</a></li>
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Contenido
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <!-- <script src="js/formulario.js"></script> -->
+
+  
+  
+
+   <script type="module" src="js/creacionPreguntas.js">
+
+   </script>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+    });
+  
+    // Or with jQuery
+  
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  </script>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
+  
+    // Or with jQuery
+  
+    $(document).ready(function(){
+      $('.modal').modal();
+    });    
+  </script>
+  <script>
+
+  </script>
+  <script>
+   /* 
+    const images = [
+    'css/n2.jpg', 
+    'css/n3.jpg', 
+    ];
+
+    let currentImageIndex = 0;
+    const body = document.body;
+
+    
+    function changeBackgroundImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      body.style.backgroundImage = `url(${images[currentImageIndex]})`;
+    }
+
+    
+    setInterval(changeBackgroundImage, 5000);
+    */
+  </script>
+  </body>
+</html>

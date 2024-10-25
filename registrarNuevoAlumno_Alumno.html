@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrando a la clase</title>
+    <link rel="stylesheet" href="css/registranda.css">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="form-container">
+        <form id="registroForm">
+            
+            <div class="header-container">
+                <div class="image-container">
+                    <img src="img/logos/logoTecnm.png" alt="Imagen izquierda">
+                </div>
+                <p id="tit">Registrando usuario a una clase</p>
+                <div class="image-container">
+                    <img src="img/logos/logoTecnm.png" alt="Imagen derecha">
+                </div>
+            </div>
+
+
+            <hr>
+              <div class="input-field">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="claveClase" type="text" class="validate" required>
+                <label for="claveClase">Clave de la clase</label>
+              </div>
+            <hr>            
+            
+            <div class="input-field">
+                <i class="material-icons prefix">person</i>
+                <input id="nombreAlumno" type="text" class="validate" required>
+                <label for="nombreAlumno">Nombre del alumno</label>
+              </div>
+          
+              <!-- Input Número de control -->
+              <div class="input-field">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="numControl" type="text" class="validate" required>
+                <label for="numControl">Número de control</label>
+              </div>
+          
+              <!-- Input Nombre de usuario -->
+              <div class="input-field">
+                <i class="material-icons prefix">person_outline</i>
+                <input id="nombreUsuario" type="text" class="validate" required>
+                <label for="nombreUsuario">Nombre de usuario</label>
+              </div>
+          
+              <!-- Input Contraseña -->
+              <div class="input-field">
+                <i class="material-icons prefix">lock</i>
+                <input id="password" type="password" class="validate" required>
+                <label for="password">Contraseña</label>
+              </div>
+          
+              <!-- Input Confirmar Contraseña -->
+              <div class="input-field">
+                <i class="material-icons prefix">lock_outline</i>
+                <input id="confirmPassword" type="password" class="validate" required>
+                <label for="confirmPassword">Confirmar contraseña</label>
+                <span id="passwordMismatch" style="color: red; display: none;">Las contraseñas no coinciden</span>
+              </div>
+          
+              <!-- Input Semestre -->
+              <div class="input-field">
+                <i class="material-icons prefix">school</i>
+                <input id="semestre" type="number" class="validate" min="1" max="14" required>
+                <label for="semestre">Semestre</label>
+              </div>
+          
+              <!-- Select Carrera -->
+               
+              <div class="input-field col s12">
+     
+                <select id="carrera" required>
+                  <option value="" disabled selected>Elige tu carrera</option>
+                  <option value="Ingeniería en Sistemas Computacionale">Ingeniería en Sistemas Computacionales</option>
+                  <option value="Ingeniería en Gestión Empresarial">Ingeniería en Gestión Empresarial</option>
+                  <option value="Ingeniería en Informática">Ingeniería en Informática</option>
+                  <option value="Ingeniería Civil">Ingeniería Civil</option>
+                  <option value="Contador Público">Contador Público</option>
+                </select>
+                <label for="carrera"></label>
+              </div>
+              
+
+            <!-- Contenedor de botones -->
+            <div class="button-container">
+                <button type="submit">Registrar</button>
+                <button type="button" onclick="cancelarRegistro()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+        
+
+    <!-- MODAL -->
+  <!-- Modal Structure -->
+  <div id="claseNoExisteModal_s" class="modal_s">
+    <div class="modal-content_s">
+      <h4>Clase no encontrada</h4>
+      <p>La clase con la clave ingresada no existe. Por favor, verifica la clave e inténtalo nuevamente.</p>
+    </div>
+    <div class="modal-footer_s">
+      <button class="modal-close_s btn_s">Cerrar</button>
+    </div>
+  </div>
+
+
+  <!-- Modal de Éxito -->
+<!-- Modal de éxito -->
+<div id="registroExitosoModal" class="modal_ex">
+  <div class="modal-content_ex">
+      <span class="close-button" id="closeSuccessModal">&times;</span>
+      <h2>Registrado con éxito</h2>
+      <p>Has sido registrado correctamente.</p>
+      <button id="goToIndexButton">Ir a Inicio</button>
+  </div>
+</div>
+
+
+
+    <script type="module" src="js/fireBase.js"></script>
+    <script type="module" src="js/registroAlumno.js"></script>    
+
+    <script>
+        document.getElementById('confirmPassword').addEventListener('change', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const passwordError = document.getElementById('passwordError');
+        
+            if (password !== confirmPassword) {
+                passwordError.textContent = 'Las contraseñas no coinciden';
+            } else {
+                passwordError.textContent = ''; // Limpiar el mensaje de error si coinciden
+            }
+        });
+        
+   
+        
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('select');
+          var instances = M.FormSelect.init(elems, options);
+        });
+      
+        // Or with jQuery
+      
+        $(document).ready(function(){
+          $('select').formSelect();
+        });
+      </script>
+    
+      <script>
+    
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.modal');
+          var instances = M.Modal.init(elems, options);
+        });
+      
+        // Or with jQuery
+      
+        $(document).ready(function(){
+          $('.modal').modal();
+        });    
+      </script>
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+</body>
+</html>
