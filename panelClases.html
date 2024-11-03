@@ -6,7 +6,7 @@
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  
+  <link rel="stylesheet" href="css/toast.css">
   <!-- CSS propio -->
   
     
@@ -23,66 +23,62 @@
         <h1 class="page-title">Sistema de preguntas</h1>
         <div class="spacer"></div> <!-- Espaciador para empujar los elementos a la derecha -->
         <ul class="nav-options_s">
+            
             <li><a href="panelClases.html">Ver clases</a></li>
-            <li><a href="nuevoExamen.html" class="nuevo-examen">Nuevo examen</a></li>
-            <li><a href="panelMaestro.html" class="ver-examenes">Ver exámenes</a></li>
-            <li><a href="reporteExamen.html" class="ver-examenes-cerrados">Ver exámenes cerrados</a></li>
-            <li><a href="clase.html" class="datos-clase">Datos de la clase</a></li>
+            <li><a href="nuevoExamen.html" class="bloqueado">Nuevo examen</a></li>
+            <li><a href="panelMaestro.html" class="bloqueado">Ver exámenes</a></li>
+            <li><a href="panelExamenCerrados.html" class="bloqueado">Ver exámenes cerrados</a></li>
+            <li><a href="clase.html" class="bloqueado">Datos de la clase</a></li>
             <li><a href="index.html">Cerrar sesión</a></li>
+            
         </ul>
-        
     </nav>
 
-    <br><br>
-    <div class="table-container" id="totExams">
-        <table class="custom-table">
-            <thead>
-                <tr>
-                    <th>Título del examen</th>
-                    <th>Estado</th>
-                    <th>Cantidad de intentos</th>
-                    <th>Duración del examén</th>
-                    <th>Fecha y hora de cierre</th>
-                   
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- <tr>
-                    <td>Examen 1</td>
-                    <td>Finalizado</td>
-                    <td>2</td>
-                    <td>2 horas</td>
-                    <td>2024-10-01 10:00</td>
-                    <td>Editando</td>
-                    <td><button>Ver y editar</button> <br><button>Publicar</button><br><button>Borrar</button></td>
-                </tr>
-                <tr>
-                    <td>Examen 2</td>
-                    <td>En curso</td>
-                    <td>1</td>
-                    <td>2 horas</td>
-                    <td>2024-10-10 15:30</td>
-                    <td>Editando</td>
-                    <td><button>Ver y editar</button> <br><button>Publicar</button><br><button>Borrar</button></td>
-                </tr>
-                <tr>
-                    <td>Examen 3</td>
-                    <td>Finalizado</td>
-                    <td>3</td>
-                    <td>2 horas</td>
-                    <td>2024-10-15 09:45</td>
-                    <td>Editando</td>
-                    <td><button>Ver y editar</button> <br><button>Publicar</button><br><button>Borrar</button></td>
-                </tr> -->
-            </tbody>
-        </table>
+ 
+    <div class="card-container_ds">
+        <button id="btnNuevaClase">Nueva clase</button>
     </div>
-    
-    
-    <div class="form-container">
-        <!-- Aquí iría tu formulario -->
-    </div>
+    <div id="toastContainer" class="toast-container"></div>
+    <div id="contenedorClases"></div>
+
+
+   
+
+
+    <!-- <div class="card-container_ds">
+        <div class="card_ds">
+            <div class="card-inner_ds">
+                <div class="card-icon_ds"><h4>PR</h4></div>
+                <div class="card-content_ds">
+                    <h3>Título de la Carta 1</h3>
+                    <p>Descripción breve de la carta.</p>
+                    <button class="card-button_ds">Ver más</button>
+                </div>
+            </div>
+        </div>
+        <div class="card_ds">
+            <div class="card-inner_ds">
+                <div class="card-icon_ds"><h4>PR</h4></div>
+                <div class="card-content_ds">
+                    <h3>Título de la Carta 2</h3>
+                    <p>Descripción breve de la carta.</p>
+                    <button class="card-button_ds">Ver más</button>
+                </div>
+            </div>
+        </div>
+        <div class="card_ds">
+            <div class="card-inner_ds">
+                <div class="card-icon_ds"><h4>PR</h4></div>
+                <div class="card-content_ds">
+                    <h3>Título de la Carta 3</h3>
+                    <p>Descripción breve de la carta.</p>
+                    <button class="card-button_ds">Ver más</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+        
+
 
     <!-- Modales -->
 <!-- Modal de Confirmación -->
@@ -129,7 +125,7 @@
   
 
      <script type="module" src="js/fireBase.js"></script>
-     <script type="module" src="js/panelMtro.js">
+     <script type="module" src="js/clases.js">
 
   
      </script>

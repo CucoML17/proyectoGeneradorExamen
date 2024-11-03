@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .question {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 15px 0;
+            padding: 15px;
+        }
+
+        .options {
+            margin-top: 10px;
+        }
+
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        #btnEnviar {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #btnEnviar:hover {
+            background-color: #0056b3;
+        }
+
+        .modal {
+            display: none;
+            /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 51, 0.8);
+            /* Fondo oscuro */
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #e6f0ff; /* Fondo azul muy claro */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #004080; /* Azul oscuro para el encabezado */
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            background-color: #00509e; /* Azul intenso para el botón */
+            color: white;
+        }
+    </style>
+    <title>Contestar Examen</title>
+</head>
+
+<body>
+    <h1>Contestar Examen</h1>
+
+    <div id="cronometro" style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;"></div>
+
+
+    <form id="formExamen">
+        <div id="preguntasContainer"></div> <!-- Contenedor para preguntas -->
+        <button type="button" id="btnEnviar">Enviar respuestas</button>
+    </form>
+
+    <script type="module" src="js/contestarExam.js"></script> <!-- Asegúrate de que el nombre sea correcto -->
+    <script>
+
+        const params = new URLSearchParams(window.location.search);
+//const idExamen = params.get("id");
+const claseId = params.get("claseId");
+const claveAlumno = params.get("clave");
+
+        document.getElementById('btnEnviar').addEventListener('click', async () => {
+            // Aquí puedes manejar la recolección de respuestas y validación
+            const form = document.getElementById('formExamen');
+            const respuestas = new FormData(form);
+
+            // Aquí llamarías a tu función para enviar las respuestas
+            await guardarRespuestas(Object.fromEntries(respuestas)); // Envía las respuestas a tu función
+
+            // Mostrar las respuestas en la consola si es necesario
+            console.log(Object.fromEntries(respuestas));
+        });
+
+        document.getElementById('botonSalir').onclick = () => {
+            window.location.href = `panelAlumno.html?id=${claseId}&clave=${claveAlumno}`;
+        };
+
+
+    </script>
+
+    <!-- Botón de Salir en la esquina superior derecha -->
+    <button id="botonSalir" class="btn salir-btn">Salir</button>
+
+
+    <script>
+        
+        // Función para redirigir al hacer clic en el botón "Salir"
+        document.getElementById('botonSalir').onclick = () => {
+            window.location.href = `panelAlumno.html?id=${claseId}&clave=${claveAlumno}`;
+        };
+    </script>
+
+
+    <!-- Modal de Finalización -->
+    <div id="resultadoModal" class="modal">
+        <div class="modal-content">
+            <h2>Felicidades! Has terminado el examen.</h2>
+            <p>Tus respuestas han sido guardadas correctamente.</p>
+            <p>Calificación: <span id="calificacionFinal"></span></p>
+            <p>Gracias por contestar.</p>
+            <button id="btnSalir">Salir</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

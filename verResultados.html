@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Examen</title>
+
+    <!-- Incluye la biblioteca jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <!-- Estilos de Materialize -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .exam-title {
+            text-align: center;
+            color: #1b3b6f;
+            /* Azul oscuro */
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 2.2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        .question {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            /* Centro pero sin afectar el texto interno */
+            padding: 20px;
+            border-left: 5px solid #1e73be;
+            /* Azul Tecnológico */
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .question h4 {
+            margin: 0 0 15px;
+            font-weight: 600;
+            color: #1b3b6f;
+            /* Azul oscuro */
+            font-size: 1.2rem;
+            text-align: left;
+            /* Texto alineado a la izquierda */
+        }
+
+        .answer {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .answer-label {
+            color: #333;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .answer-text.correct {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .answer-text.incorrect {
+            color: #c62828;
+            font-weight: 600;
+        }
+
+        .botones-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .botones-container .btn {
+            margin: 10px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+        }
+
+        .botones-container .btn.download-btn {
+            background-color: #1e73be;
+            /* Azul Tecnológico */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .botones-container .btn.download-btn:hover {
+            background-color: #135a96;
+            /* Azul más oscuro para el hover */
+            transform: translateY(-2px);
+        }
+
+        .botones-container .btn.exit-btn {
+            background-color: #c62828;
+            /* Rojo para el botón de salir */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .botones-container .btn.exit-btn:hover {
+            background-color: #8e0000;
+            transform: translateY(-2px);
+        }
+
+        .center-title {
+            text-align: center;
+            color: #1b3b6f;
+            /* Opcional: color de texto en azul */
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .grade-text {
+            text-align: center;
+            color: #1e73be;
+            /* Azul Tecnológico */
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <h1>Resultados del Examen</h1>
+    <div id="resultadosContainer"></div> <!-- Contenedor para mostrar resultados -->
+
+
+    <!-- Script para cargar los resultados -->
+    <script type="module" src="js/verResult.js"></script>
+</body>
+
+</html>

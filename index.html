@@ -50,8 +50,11 @@
 
             
             <div id="divRegistro">
+       
               <br>
-              <br>
+              <a id="newMaestro" href="registrarNuevoMaestro.html">Nuevo maestro</a>
+              <br><br>              
+
             </div>
             
             <button type="submit">Iniciar sesión</button>
@@ -59,7 +62,7 @@
     </div>    
   
 
-    <!-- Modal bb -->
+    <!-- Modal chiquito -->
     <div id="errorModal" class="modal_S">
         <div class="modal-content_S">
             <span class="close" id="closeModal">&times;</span>
@@ -95,7 +98,11 @@
           buttonValue.value = "0"; 
           
           
-          divRegistro.innerHTML = '<br><br>';
+          divRegistro.innerHTML = `
+          <br>
+          <a id="newMaestro" href="nuevoMaestro.html">Nuevo maestro</a>
+          <br><br>
+      `;
       }
   
      
@@ -124,7 +131,7 @@
       var instances = M.FormSelect.init(elems, options);
     });
   
-    // Or with jQuery
+
   
     $(document).ready(function(){
       $('select').formSelect();
@@ -138,7 +145,7 @@
       var instances = M.Modal.init(elems, options);
     });
   
-    // Or with jQuery
+
   
     $(document).ready(function(){
       $('.modal').modal();

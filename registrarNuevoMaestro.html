@@ -19,7 +19,7 @@
                 <div class="image-container">
                     <img src="img/logos/logoTecnm.png" alt="Imagen izquierda">
                 </div>
-                <p id="tit">Registrando usuario a una clase</p>
+                <p id="tit">Registrando Maestro para privilegios</p>
                 <div class="image-container">
                     <img src="img/logos/logoTecnm.png" alt="Imagen derecha">
                 </div>
@@ -27,31 +27,32 @@
 
 
             <hr>
-              <div class="input-field">
-                <i class="material-icons prefix">vpn_key</i>
-                <input id="claveClase" type="text" class="validate" required>
-                <label for="claveClase">Clave de la clase</label>
-              </div>
-            <hr>            
+      
             
-            <div class="input-field">
+              <div class="input-field">
                 <i class="material-icons prefix">person</i>
-                <input id="nombreAlumno" type="text" class="validate" required>
-                <label for="nombreAlumno">Nombre del alumno</label>
+                <input id="txtNombre" type="text" class="validate" required>
+                <label for="txtNombre">Nombre del maestro</label>
               </div>
-          
-              <!-- Input Número de control -->
+
               <div class="input-field">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="numControl" type="text" class="validate" required>
-                <label for="numControl">Número de control</label>
+                <i class="material-icons prefix">assignment_ind</i>
+                <input id="txtNoControl" type="text" class="validate" required>
+                <label for="txtNoControl">Número de control</label>
               </div>
-          
-              <!-- Input Nombre de usuario -->
+
+
               <div class="input-field">
-                <i class="material-icons prefix">person_outline</i>
-                <input id="nombreUsuario" type="text" class="validate" required>
-                <label for="nombreUsuario">Nombre de usuario</label>
+                <i class="material-icons prefix">equalizer</i>
+                <input id="txtEspe" type="text" class="validate" required>
+                <label for="txtEspe">Especialidad</label>
+              </div>
+
+
+              <div class="input-field">
+                <i class="material-icons prefix">person</i>
+                <input id="txtUsuario" type="text" class="validate" required>
+                <label for="txtUsuario">Nombre de usuario:</label>
               </div>
           
               <!-- Input Contraseña -->
@@ -69,27 +70,6 @@
                 <span id="passwordMismatch" style="color: red; display: none;">Las contraseñas no coinciden</span>
               </div>
           
-              <!-- Input Semestre -->
-              <div class="input-field">
-                <i class="material-icons prefix">school</i>
-                <input id="semestre" type="number" class="validate" min="1" max="14" required>
-                <label for="semestre">Semestre</label>
-              </div>
-          
-              <!-- Select Carrera -->
-               
-              <div class="input-field col s12">
-     
-                <select id="carrera" required>
-                  <option value="" disabled selected>Elige tu carrera</option>
-                  <option value="Ingeniería en Sistemas Computacionale">Ingeniería en Sistemas Computacionales</option>
-                  <option value="Ingeniería en Gestión Empresarial">Ingeniería en Gestión Empresarial</option>
-                  <option value="Ingeniería en Informática">Ingeniería en Informática</option>
-                  <option value="Ingeniería Civil">Ingeniería Civil</option>
-                  <option value="Contador Público">Contador Público</option>
-                </select>
-                <label for="carrera"></label>
-              </div>
               
 
             <!-- Contenedor de botones -->
@@ -128,7 +108,7 @@
 
 
     <script type="module" src="js/fireBase.js"></script>
-    <script type="module" src="js/registroAlumno.js"></script>    
+    <script type="module" src="js/registrarMaestro.js"></script>    
 
     <script>
         document.getElementById('confirmPassword').addEventListener('change', function() {

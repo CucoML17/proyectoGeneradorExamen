@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de control del alumno</title>
+
+    <!-- CSS Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <!-- CSS Propio -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/panelMaestroEstilo.css">
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar_s">
+        <div class="logo-container">
+            <img src="img/logos/tecojote.png" alt="Logo de TecoJote" class="logo">
+        </div>
+        <h1 class="page-title">Sistema de preguntas</h1>
+        <div class="spacer"></div>
+        <ul class="nav-options_s">
+            <li><a href="#" id="todosExamenes">Todos los exámenes</a></li>
+            <li><a href="#" id="pendientes">Pendientes</a></li>
+            <li><a href="#" id="finalizados">Finalizados</a></li>
+            <li><a href="index.html">Cerrar sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor de la Tabla de Exámenes -->
+    <br><br>
+    <div class="table-container" id="totExams">
+        <table class="custom-table">
+            <thead id="tablaHead">
+                <!-- Aquí se cargará el encabezado de la tabla -->
+            </thead>
+            <tbody id="tablaExamenes">
+                <!-- Aquí se cargarán los exámenes desde Firebase -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script type="module" src="js/fireBase.js"></script>
+    <script type="module" src="js/panelAlumno.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar cualquier funcionalidad necesaria de Materialize
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+
+            // Muestra los exámenes al cargar la página
+            mostrarExamenesEnTabla('todos'); // Se carga la función de mostrar exámenes
+        });
+    </script>
+
+</body>
+</html>

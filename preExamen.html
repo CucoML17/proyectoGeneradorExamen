@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 15px 0;
+            padding: 15px;
+        }
+        .options {
+            margin-top: 10px;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        #btnEnviar {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #btnEnviar:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <title>Contestar Examen</title>
+</head>
+<body>
+    <h1>Contestar Examen</h1>
+    <button type="button" id="btnEnviar" class="Volver">Volver</button>
+    <form id="formExamen">
+        <div id="preguntasContainer"></div> <!-- Contenedor para preguntas -->
+        <button type="button" id="btnEnviar" class="Volver">Volver</button>
+    </form>
+
+    <script type="module" src="js/preExa.js"></script> <!-- Asegúrate de que el nombre sea correcto -->
+    <script>
+        document.getElementById('btnEnviar').addEventListener('click', async () => {
+            // Aquí puedes manejar la recolección de respuestas y validación
+            const form = document.getElementById('formExamen');
+            const respuestas = new FormData(form);
+            
+            // Aquí llamarías a tu función para enviar las respuestas
+            await guardarRespuestas(Object.fromEntries(respuestas)); // Envía las respuestas a tu función
+            
+            // Mostrar las respuestas en la consola si es necesario
+            console.log(Object.fromEntries(respuestas)); 
+        });
+    </script>
+</body>
+</html>
