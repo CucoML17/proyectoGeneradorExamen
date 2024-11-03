@@ -1,6 +1,27 @@
 import { db } from './fireBase.js'; // Asegúrate de que este archivo tiene la configuración de Firebase.
 import { collection, getDocs, doc, updateDoc, query, where, writeBatch } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
+const params = new URLSearchParams(window.location.search);
+const claseId = params.get("id"); // Recupera el ID de la clase
+const claveDocente = params.get("clave");
+
+// async function obtenerExamenes() {
+//     const examenesSnap = await getDocs(collection(db, "Examenes"));
+//     const examenes = [];
+
+//     examenesSnap.forEach((doc) => {
+//         const data = doc.data();
+//         const estado = data.estado;
+
+//         // Filtrar exámenes por estado y por idProfe
+//         if ((estado === "En proceso" || estado === "Publicado") && data.idProfe === claseId) {
+//             examenes.push({ id: doc.id, ...data });
+//         }
+//     });
+
+//     return examenes;
+// }
+
 async function obtenerExamenes() {
     const examenesSnap = await getDocs(collection(db, "Examenes"));
     const examenes = [];
@@ -9,14 +30,19 @@ async function obtenerExamenes() {
         const data = doc.data();
         const estado = data.estado;
 
-        // Filtrar exámenes por estado: "En proceso" o "Publicado"
-        if (estado === "En proceso" || estado === "Publicado") {
+        // Filtrar exámenes por estado, idProfe, y que contengan el atributo "conta"
+        if ((estado === "En proceso" || estado === "Publicado") && data.idProfe === claseId && data.conta !== undefined) {
             examenes.push({ id: doc.id, ...data });
         }
     });
 
+    // Ordenar los exámenes por "conta" de mayor a menor
+    examenes.sort((a, b) => b.conta - a.conta); // Cambiado a b.conta - a.conta
+
     return examenes;
 }
+
+
 
 async function mostrarExamenesEnTabla() {
     const examenes = await obtenerExamenes(); // Obtiene los exámenes filtrados
@@ -64,11 +90,21 @@ async function mostrarExamenesEnTabla() {
 
 function agregarEventosBotones() {
     // Botón "Ver cuestionario" (para exámenes publicados)
+    // Botón "Ver cuestionario" (para exámenes publicados)
     document.querySelectorAll('.btn-ver-cuestionario').forEach(button => {
         button.addEventListener('click', function() {
             const idExamen = this.getAttribute('data-id');
-            // Aquí puedes agregar la lógica para ver el cuestionario
-            console.log(`Ver cuestionario del examen con ID: ${idExamen}`);
+            
+            // Obtener los parámetros necesarios
+            const params = new URLSearchParams(window.location.search);
+            const claseId = params.get("id"); // Recupera el ID de la clase
+            const claveDocente = params.get("clave"); // Recupera la clave del docente
+
+            // Construir la URL
+            const url = `preExamen.html?idEx=${idExamen}&id=${claseId}&clave=${claveDocente}`;
+
+            // Redirigir a la nueva página
+            window.location.href = url; // Cambiar la ubicación de la ventana actual
         });
     });
 
@@ -76,7 +112,7 @@ function agregarEventosBotones() {
     document.querySelectorAll('.btn-ver-editar').forEach(button => {
         button.addEventListener('click', function() {
             const idExamen = this.getAttribute('data-id');
-            window.location.href = `editExamen.html?id=${idExamen}`; // Redirigir a editExamen.html con el ID
+            window.location.href = `editExamen.html?idEx=${idExamen}&id=${claseId}&clave=${claveDocente}`;// Redirigir a editExamen.html con el ID
         });
     });
 
@@ -214,4 +250,40 @@ async function borrarExamen(idExamen) {
     // Ejecutar todas las operaciones en el batch
     await batch.commit();
 }
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Obtener los valores desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const claseId = params.get("id");
+    const claveDocente = params.get("clave"); // Obtener la clave del docente
+
+    // Modificar los enlaces de clase bloqueada
+    const bloqueados = document.querySelectorAll('.nuevo-examen, .ver-examenes, .ver-examenes-cerrados, .datos-clase');
+    
+    bloqueados.forEach(link => {
+        const originalHref = link.getAttribute('href');
+
+        // Actualizar el enlace para incluir la clase ID y claveDocente
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `${originalHref}?id=${claseId}&clave=${claveDocente}`; // Redirigir con el ID de clase y clave docente
+        });
+    });
+
+    // Modificar el enlace "Ver clases"
+    const verClasesLink = document.querySelector('a[href="panelClases.html"]'); // Seleccionar el enlace "Ver clases"
+    if (verClasesLink) {
+        verClasesLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `panelClases.html?clave=${claveDocente}`; // Redirigir solo con la clave docente
+        });
+    }
+});
+
+
 

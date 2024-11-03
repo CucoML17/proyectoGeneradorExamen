@@ -1,54 +1,68 @@
 import { db } from './fireBase.js'; // Asegúrate de que este archivo tiene la configuración de Firebase.
-import { collection, getDocs, doc, updateDoc, query, where, writeBatch, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { collection, getDocs, doc, updateDoc, query, where, writeBatch, addDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-let claveDocente = "OPZzeC5KGDqDabaNcPFz";
-let claveAntes="";
+//Recuperar los datos que se mandan por la URL
+//Investigamos que es mejor PHP, pero eso todavía no lo hemos aprendido 
+const params = new URLSearchParams(window.location.search);
+const claseId = params.get("id"); // Recupera el ID de la clase
+const claveDocente = params.get("clave");
+
+let claveAntes = "";
+
+//Obteniendo los datos de la clase
 async function cargarDatosClase() {
-    const clasesRef = collection(db, "Clases"); // Colección "Clases"
-    const q = query(clasesRef, where("claveDocente", "==", claveDocente)); // Filtra por claveDocente
+    // Referencia al documento específico usando la claseId
+    const claseRef = doc(db, "Clases", claseId); //Id de firebase
 
-    const querySnapshot = await getDocs(q); // Obtener los documentos que coinciden
+    const docSnap = await getDoc(claseRef); // Obtener el documento
 
-    if (!querySnapshot.empty) {
-        const claseData = querySnapshot.docs[0].data(); // Obtener el primer documento
-        // Llenar los inputs con los datos de la clase
+    if (docSnap.exists()) {
+        const claseData = docSnap.data(); //Obtiene los datos de aquella entidad que coincida su id de FIREBASE
+        //Pone los datos en los txt
         document.getElementById("txtClave").value = claseData.claveAcceso; // Asigna clave de acceso
-        claveAntes = claseData.claveAcceso;
+        claveAntes = claseData.claveAcceso; // Guardar la clave de acceso
         document.getElementById("txtNombre").value = claseData.nombreClase; // Asigna nombre de clase
     } else {
-        console.log("No se encontraron clases para la clave docente proporcionada.");
+        console.log("No se encontró la clase con la ID proporcionada.");
     }
 }
 
+
 // Cargar los datos al cargar la página
 window.onload = function() {
-    cargarDatosClase(); // Llama a la función para cargar los datos
+    cargarDatosClase(); //Llama a la función para cargar los datos al iniciar la base de datos
 };
 
 
 
 async function obtenerAlumnos() {
-    const alumnosRef = collection(db, "Alumnos"); // Colección "Alumnos"
-    const querySnapshot = await getDocs(alumnosRef); // Obtener todos los documentos
+    const alumnosRef = collection(db, "Alumnos"); // Colección de Alumnos
+    const querySnapshot = await getDocs(alumnosRef);
+    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); //Devuelve un array con todas las entidades de la tabla Alumnos
+}
 
-    const alumnos = querySnapshot.docs.map(doc => ({
-        id: doc.id, // Guardar el ID de cada documento
-        ...doc.data() // Obtener los datos del documento
-    }));
+async function obtenerAlumnosPorClase() {
+    const alumnosClaseRef = collection(db, "AlumnoClase"); //Tabla AlumnoClase
+    const q = query(alumnosClaseRef, where("idClase", "==", claseId)); // Filtrar por claseId
 
-    return alumnos; // Retornar la lista de alumnos
+    const querySnapshot = await getDocs(q);
+    const idAlumnos = querySnapshot.docs.map(doc => doc.data().idAlumno); // Obtener los idAlumno
+
+    return idAlumnos; //Devolver los IDs de los alumnos
 }
 
 async function mostrarAlumnosEnTabla() {
-    const alumnos = await obtenerAlumnos(); // Obtiene los alumnos
-    const tableBody = document.querySelector("#alumnosTable tbody"); // Ubicación donde se insertarán las filas
+    const idAlumnos = await obtenerAlumnosPorClase(); // Obtiene los IDs de alumnos filtrados por clase
+    const allAlumnos = await obtenerAlumnos(); // Obtiene todos los alumnos
+    const filteredAlumnos = allAlumnos.filter(alumno => idAlumnos.includes(alumno.id)); // Filtra los alumnos
 
+    const tableBody = document.querySelector("#alumnosTable tbody"); // Ubicación donde se insertarán las filas
     let tablaHTML = ''; // Acumulador de HTML
 
-    alumnos.forEach(alumno => {
+    filteredAlumnos.forEach(alumno => {
         const { nombre, numControl, usuario, semestre, carrera, id } = alumno;
 
-        // Crear la fila para cada alumno
+        //Crea la fila para cada alumno de forma dinámica con INNERHTML
         tablaHTML += `
         <tr>
             <td>${nombre}</td>
@@ -119,9 +133,25 @@ function agregarEventosBotones() {
 async function eliminarAlumno(idAlumno) {
     // Referencia a la colección "Alumnos" en Firestore
     const alumnoRef = doc(db, "Alumnos", idAlumno);
-
-    // Borrar el documento de la colección
+    
+    // Eliminar el documento de la colección "Alumnos"
     await deleteDoc(alumnoRef);
+
+    // Ahora, eliminar de la colección "AlumnoClase"
+    // Obtener la colección AlumnoClase
+    const alumnosClaseRef = collection(db, "AlumnoClase");
+    
+    // Filtrar documentos donde idAlumno coincide
+    const q = query(alumnosClaseRef, where("idAlumno", "==", idAlumno));
+    const querySnapshot = await getDocs(q); // Obtener los documentos que coinciden
+
+    // Borrar cada documento que coincida
+    const batch = writeBatch(db); // Usar batch para realizar varias operaciones en una sola llamada
+    querySnapshot.forEach(doc => {
+        batch.delete(doc.ref); // Marcar cada documento para eliminación
+    });
+
+    await batch.commit(); // Ejecutar la eliminación en la base de datos
 }
 
 
@@ -134,7 +164,8 @@ window.onload = function() {
     document.getElementById('btnAdd').addEventListener('click', function() {
          // Reemplaza esto con el valor de claveAntes
         // Redirigir a la página con el parámetro claveAntes en la URL
-        window.location.href = `registrarNuevoAlumno_Alumno.html?claveAntes=${claveAntes}`;
+        window.location.href = `registrarNuevoAlumno_Alumno.html?claveAntes=${claveAntes}&id=${claseId}&clave=${claveDocente}`;
+
     });    
 };
 
@@ -211,3 +242,37 @@ window.onclick = function(event) {
         modal.style.display = "none"; // Cerrar el modal
     }
 };
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Obtener los valores desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const claseId = params.get("id");
+    const claveDocente = params.get("clave"); // Obtener la clave del docente
+
+    // Modificar los enlaces de clase bloqueada
+    const bloqueados = document.querySelectorAll('.nuevo-examen, .ver-examenes, .ver-examenes-cerrados, .datos-clase');
+    
+    bloqueados.forEach(link => {
+        const originalHref = link.getAttribute('href');
+
+        // Actualizar el enlace para incluir la clase ID y claveDocente
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `${originalHref}?id=${claseId}&clave=${claveDocente}`; // Redirigir con el ID de clase y clave docente
+        });
+    });
+
+    // Modificar el enlace "Ver clases"
+    const verClasesLink = document.querySelector('a[href="panelClases.html"]'); // Seleccionar el enlace "Ver clases"
+    if (verClasesLink) {
+        verClasesLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `panelClases.html?clave=${claveDocente}`; // Redirigir solo con la clave docente
+        });
+    }
+});

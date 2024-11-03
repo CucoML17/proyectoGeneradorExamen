@@ -1,4 +1,40 @@
 let idPPP = "OPZzeC5KGDqDabaNcPFz";
+
+const params = new URLSearchParams(window.location.search);
+const claseId = params.get("id"); // Recupera el ID de la clase
+const claveDocente = params.get("clave");
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Obtener los valores desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const claseId = params.get("id");
+    const claveDocente = params.get("clave"); // Obtener la clave del docente
+    console.log(claseId);
+
+    // Modificar los enlaces de clase bloqueada
+    const bloqueados = document.querySelectorAll('.nuevo-examen, .ver-examenes, .ver-examenes-cerrados, .datos-clase');
+    
+    bloqueados.forEach(link => {
+        const originalHref = link.getAttribute('href');
+
+        // Actualizar el enlace para incluir la clase ID y claveDocente
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `${originalHref}?id=${claseId}&clave=${claveDocente}`; // Redirigir con el ID de clase y clave docente
+        });
+    });
+
+    // Modificar el enlace "Ver clases"
+    const verClasesLink = document.querySelector('a[href="panelClases.html"]'); // Seleccionar el enlace "Ver clases"
+    if (verClasesLink) {
+        verClasesLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `panelClases.html?clave=${claveDocente}`; // Redirigir solo con la clave docente
+        });
+    }
+});
+
+
 window.actualizarDato = actualizarDato;
 window.eliminarOpcion = eliminarOpcion;
 
@@ -997,6 +1033,20 @@ async function eliminarPregunta(id) {
 document.getElementById('btnSubirEx').addEventListener('click', async function(event) {
     event.preventDefault(); // Evita la acción predeterminada del botón
 
+    // Obtener el valor máximo de "conta" actual en la colección "Examenes"
+    let maxConta = -1; // Inicializar en -1, por si es el primer examen
+
+    const examenesSnapshot = await getDocs(collection(db, "Examenes"));
+    examenesSnapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.conta !== undefined && data.conta > maxConta) {
+            maxConta = data.conta;
+        }
+    });
+
+    // El nuevo valor de "conta" será el máximo actual más 1
+    const nuevoConta = maxConta + 1;
+
     // Obtener los valores de los campos del examen
     const tituloExamen = document.getElementById('txtTit').value;
     const fechaFinalizacion = document.getElementById('txtFecha').value; // YYYY-MM-DD
@@ -1004,38 +1054,32 @@ document.getElementById('btnSubirEx').addEventListener('click', async function(e
     const tiempoHoras = document.getElementById('txtTempoHoras').value;
     const tiempoMinutos = document.getElementById('txtTempoMins').value;
     const numIntentos = document.getElementById('txtNumIntentos').value;
-    const idPPP = 'algunIDDeProfesor'; // Supón que esto viene de tu sistema
+    const idPPP = claseId; // Supón que esto viene de tu sistema
 
-    // Validaciones de fecha y hora
-    const ahora = new Date(); // Fecha y hora actual
-
-    // Convertir la fecha y hora finalización en un objeto Date
+    // Validaciones de fecha y hora...
+    const ahora = new Date();
     const fechaFinal = new Date(`${fechaFinalizacion}T${horaFinalizacion}:00`);
+    const fechaActual = ahora.toLocaleDateString('en-CA');
 
-    // Obtener la fecha actual en formato local (YYYY-MM-DD)
-    const fechaActual = ahora.toLocaleDateString('en-CA'); // Formato ISO (YYYY-MM-DD)
-
-    // Validar que la fecha no sea anterior a hoy
     if (fechaFinalizacion < fechaActual) {
         notificar("La fecha de finalización no puede ser anterior a la fecha actual.");
-        document.getElementById('txtFecha').focus(); // Hacer focus en el campo de fecha
+        document.getElementById('txtFecha').focus();
         return;
     }
 
-    // Validar que la hora no sea anterior a la hora actual + 1 hora si la fecha es hoy
     if (fechaFinalizacion === fechaActual) {
-        const horaLimite = new Date(ahora.getTime() + (60 * 60 * 1000)); // Sumar 1 hora
+        const horaLimite = new Date(ahora.getTime() + (60 * 60 * 1000));
         const [horaFinalizacionHoras, horaFinalizacionMinutos] = horaFinalizacion.split(':');
 
         if (fechaFinal < horaLimite) {
             notificar(`La hora debe ser al menos ${horaLimite.getHours()}:${horaLimite.getMinutes()} o posterior.`);
-            document.getElementById('txtHora').focus(); // Hacer focus en el campo de hora
+            document.getElementById('txtHora').focus();
             return;
         }
     }
 
     try {
-        // Agregar el examen a Firebase
+        // Agregar el examen a Firebase con el nuevo campo "conta"
         const docRef = await addDoc(collection(db, "Examenes"), {
             titulo: tituloExamen,
             fechaFinalizacion: fechaFinalizacion,
@@ -1046,7 +1090,8 @@ document.getElementById('btnSubirEx').addEventListener('click', async function(e
             },
             numeroIntentos: numIntentos,
             estado: "En proceso",
-            idProfe: idPPP  
+            idProfe: idPPP,
+            conta: nuevoConta // Agregar el campo "conta" autoincrementado
         });
 
         console.log("Examen agregado con ID: ", docRef.id);
@@ -1063,25 +1108,24 @@ document.getElementById('btnSubirEx').addEventListener('click', async function(e
             }
         });
 
-        // Mostrar el modal de éxito
+        // Mostrar el modal de éxito y redirigir
         const modalExito = document.getElementById('modalExito');
         const instance = M.Modal.init(modalExito);
         instance.open();
 
-        // Redirigir al cerrar el modal (ya sea con el botón o al hacer clic fuera)
         document.getElementById('btnCerrarModal').addEventListener('click', function() {
-            window.location.href = 'panelMaestro.html';
+            window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`;
         });
 
-        // Si se cierra al hacer clic fuera del modal, también redirigir
         modalExito.addEventListener('click', function() {
-            window.location.href = 'panelMaestro.html';
+            window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`;
         });
 
     } catch (e) {
         console.error("Error al agregar el examen o actualizar preguntas: ", e);
     }
 });
+
 
 
 
@@ -1124,13 +1168,13 @@ document.getElementById('btnConfirmDelete').addEventListener('click', async () =
 });
 
 document.getElementById('btnCloseSuccess').addEventListener('click', () => {
-    window.location.href = 'panelMaestro.html'; // Redirigir al panel maestro
+    window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`;// Redirigir al panel maestro
 });
 
 // O también al hacer clic fuera del modal
 const modalSuccess = M.Modal.getInstance(document.getElementById('modalSuccess'));
 modalSuccess.options.onCloseEnd = function() {
-    window.location.href = 'panelMaestro.html'; // Redirigir al panel maestro
+    window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`;// Redirigir al panel maestro
 };
 
 
@@ -1166,3 +1210,5 @@ function restaurarOverflow() {
     // Restaurar el comportamiento del scroll
     document.body.style.overflow = "auto";
 }
+
+

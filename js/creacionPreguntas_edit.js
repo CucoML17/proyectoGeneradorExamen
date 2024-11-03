@@ -1,7 +1,41 @@
+const params = new URLSearchParams(window.location.search);
+const claseId = params.get("id"); // Recupera el ID de la clase
+const claveDocente = params.get("clave");
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Obtener los valores desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const claseId = params.get("id");
+    const claveDocente = params.get("clave"); // Obtener la clave del docente
+
+    // Modificar los enlaces de clase bloqueada
+    const bloqueados = document.querySelectorAll('.nuevo-examen, .ver-examenes, .ver-examenes-cerrados, .datos-clase');
+    
+    bloqueados.forEach(link => {
+        const originalHref = link.getAttribute('href');
+
+        // Actualizar el enlace para incluir la clase ID y claveDocente
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `${originalHref}?id=${claseId}&clave=${claveDocente}`; // Redirigir con el ID de clase y clave docente
+        });
+    });
+
+    // Modificar el enlace "Ver clases"
+    const verClasesLink = document.querySelector('a[href="panelClases.html"]'); // Seleccionar el enlace "Ver clases"
+    if (verClasesLink) {
+        verClasesLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la recarga de página
+            window.location.href = `panelClases.html?clave=${claveDocente}`; // Redirigir solo con la clave docente
+        });
+    }
+});
+
 //Carga para editar
 function obtenerID() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('id');
+    console.log(params.get('idEx'));
+    return params.get('idEx');
 }
 async function obtenerExamenPorID(id) {
     // Lógica para obtener el examen desde Firestore
@@ -1102,12 +1136,12 @@ document.getElementById('btnSubirEx').addEventListener('click', async function(e
 
         // Redirigir al cerrar el modal (ya sea con el botón o al hacer clic fuera)
         document.getElementById('btnCerrarModal').addEventListener('click', function() {
-            window.location.href = 'panelMaestro.html';
+            window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`;
         });
 
         // Si se cierra al hacer clic fuera del modal, también redirigir
         modalExito.addEventListener('click', function() {
-            window.location.href = 'panelMaestro.html';
+            window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`;
         });
 
     } catch (e) {
@@ -1130,13 +1164,13 @@ document.getElementById('brnCancelarEx').addEventListener('click', () => {
 document.getElementById('btnConfirmCancel').addEventListener('click', () => {
     const modalConfirm = M.Modal.getInstance(document.getElementById('modalConfirm'));
     modalConfirm.close(); // Cerrar el modal de confirmación
-    window.location.href = 'panelMaestro.html'; // Redirigir al panel maestro
+    window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`; // Redirigir al panel maestro
 });
 
 // Opcional: Si quieres redirigir al hacer clic fuera del modal
 const modalConfirm = M.Modal.getInstance(document.getElementById('modalConfirm'));
 modalConfirm.options.onCloseEnd = function() {
-    window.location.href = 'panelMaestro.html'; // Redirigir al panel maestro
+    window.location.href = `panelMaestro.html?id=${claseId}&clave=${claveDocente}`;// Redirigir al panel maestro
 };
 
 
@@ -1172,3 +1206,7 @@ function restaurarOverflow() {
     // Restaurar el comportamiento del scroll
     document.body.style.overflow = "auto";
 }
+
+
+
+

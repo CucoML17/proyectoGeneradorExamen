@@ -2,6 +2,9 @@ import { db } from './fireBase.js'; // Asegúrate de que este archivo tiene la c
 import { collection, getDocs, doc, updateDoc, query, where, writeBatch, addDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 let clavosa="";
+const params = new URLSearchParams(window.location.search);
+const claseId = params.get("id"); // Recupera el ID de la clase
+const claveDocente = params.get("clave");
 
 async function validarClaveClase(claveClase) {
     // Referencia a la colección "Clase" en Firestore
@@ -76,7 +79,7 @@ document.getElementById("closeSuccessModal").onclick = function() {
 
     // Verificar si claveAntes tiene un valor
     if (clavosa) {
-        window.location.href = 'clase.html?claveAntes=' + encodeURIComponent(clavosa); // Redirigir a clase.html con claveAntes
+        window.location.href = `clase.html?claveAntes=${encodeURIComponent(clavosa)}&id=${encodeURIComponent(claseId)}&clave=${encodeURIComponent(claveDocente)}`; // Redirigir a clase.html con claveAntes
     } else {
         window.location.href = 'index.html'; // Redirigir a index.html
     }
@@ -89,11 +92,25 @@ document.getElementById("goToIndexButton").onclick = function() {
 
     // Verificar si claveAntes tiene un valor
     if (clavosa) {
-        window.location.href = 'clase.html?claveAntes=' + encodeURIComponent(clavosa); // Redirigir a clase.html con claveAntes
+        window.location.href = `clase.html?claveAntes=${encodeURIComponent(clavosa)}&id=${encodeURIComponent(claseId)}&clave=${encodeURIComponent(claveDocente)}`; // Redirigir a clase.html con claveAntes<-----------
     } else {
         window.location.href = 'index.html'; // Redirigir a index.html
     }
 };
+
+// Asegúrate de que el código JavaScript se ejecute después de que el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('btnCancelar').addEventListener('click', cancelarRegistro);
+});
+
+function cancelarRegistro() {
+    // Aquí va la lógica que deseas ejecutar al hacer clic en el botón
+    if (clavosa) {
+        window.location.href = `clase.html?claveAntes=${encodeURIComponent(clavosa)}&id=${encodeURIComponent(claseId)}&clave=${encodeURIComponent(claveDocente)}`; // Redirigir a clase.html con claveAntes<-----------
+    } else {
+        window.location.href = 'index.html'; // Redirigir a index.html
+    }
+}
 
 
 // Evento para el formulario de registro
@@ -131,24 +148,46 @@ document.getElementById("registroForm").addEventListener("submit", async (event)
         document.getElementById("nombreUsuario").focus();
     } else {
         // Si no existe, guardar los datos en Firebase
-        const carrera = document.getElementById("carrera").value; // Aquí ya se obtiene el nombre completo
+        const carrera = document.getElementById("carrera").value;
         const password = document.getElementById("password").value;
         const nombre = document.getElementById("nombreAlumno").value;
         const numControl = document.getElementById("numControl").value;
         const semestre = document.getElementById("semestre").value;
-
-        // Guardar los datos en la colección "alumnos"
-        await addDoc(collection(db, "Alumnos"), {
-            carrera: carrera, // Nombre completo de la carrera
+        const claveClase = document.getElementById("claveClase").value; // Obtener la clave de la clase
+    
+        // Guardar los datos en la colección "Alumnos"
+        const alumnoRef = await addDoc(collection(db, "Alumnos"), {
+            carrera: carrera,
             contrasena: password,
             nombre: nombre,
             numControl: numControl,
             semestre: semestre,
             usuario: nombreUsuario,
         });
-
-        // Mostrar el modal de éxito
-        showSuccessModal(); // Llama a la función para mostrar el modal
+    
+        // Obtener la ID del alumno recién agregado
+        const idAlumno = alumnoRef.id; // Esto te da la ID del nuevo documento
+    
+        // Buscar la clase por claveAcceso
+        const clasesRef = collection(db, "Clases");
+        const q = query(clasesRef, where("claveAcceso", "==", claveClase)); // Filtrar por claveAcceso
+        const querySnapshot = await getDocs(q); // Obtener los documentos que coinciden
+    
+        if (!querySnapshot.empty) {
+            const claseData = querySnapshot.docs[0].data(); // Obtener el primer documento
+            const idClase = querySnapshot.docs[0].id; // Obtener la ID de la clase
+    
+            // Guardar la relación en la colección "AlumnoClase"
+            await addDoc(collection(db, "AlumnoClase"), {
+                idAlumno: idAlumno,
+                idClase: idClase,
+            });
+    
+            // Mostrar el modal de éxito
+            showSuccessModal(); // Llama a la función para mostrar el modal
+        } else {
+            console.log("No se encontró la clase con la clave de acceso proporcionada.");
+        }
     }
 });
 
