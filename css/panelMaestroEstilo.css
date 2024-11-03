@@ -1,58 +1,58 @@
-/* Estilos generales para la navbar */
+/*para la navbar*/
 .navbar_s {
     display: flex;
     align-items: center;
-    background-color: white; /* Fondo blanco para la navbar */
+    background-color: white; 
     padding: 10px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para la navbar */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
     padding-top: 60px;
     padding-bottom: 30px;
 
-    position: sticky; /* Hacer que la navbar sea sticky */
-    top: 0; /* Mantener la navbar en la parte superior de la ventana */
+    position: sticky; /*Lo que aprendimos de la sticky*/
+    top: 0; 
     z-index: 1000;     
 }
 
-/* Estilo para el contenedor del logo */
+
 .logo-container {
-    margin-right: 60px; /* Espaciado a la derecha del logo */
+    margin-right: 60px; 
 }
 
-/* Estilo para el logo */
+
 .logo {
-    width: 85px; /* Ajusta el tamaño del logo según sea necesario */
+    width: 85px; 
     height: auto;
 }
 
-/* Título de la página */
+/*Título de la página*/
 .page-title {
-    color: #1e3a5f; /* Azul marino */
+    color: #1e3a5f; 
     margin-left: -40px;
     margin-bottom: 70px;
-    font-size: 24px; /* Tamaño de fuente del título */
+    font-size: 24px; 
 }
 
-/* Espaciador para empujar las opciones a la derecha */
+
 .spacer {
-    flex-grow: 1; /* Toma todo el espacio disponible */
+    flex-grow: 1; 
 }
 
-/* Estilos para la lista de opciones de navegación */
+
 .nav-options_s {
-    list-style: none; /* Quita el estilo de lista */
+    list-style: none; 
     display: flex;
 
     margin: 0;
     padding: 0;
 }
 
-/* Estilos para los enlaces de navegación */
+
 .nav-options_s a {
-    text-decoration: none; /* Quita subrayado */
-    color: #1e3a5f; /* Azul marino */
+    text-decoration: none; 
+    color: #1e3a5f; 
     margin-bottom: 30px;
-    border-radius: 10px; /* Bordes redondeados */
-    transition: background-color 0.3s; /* Efecto de transición */
+    border-radius: 10px; 
+    transition: background-color 0.3s; 
     line-height: 1.2;
     text-align: center;
 
@@ -61,10 +61,10 @@
     font-size: 17px;
 }
 
-/* Efecto hover para enlaces de navegación */
+
 .nav-options_s a:hover {
-    background-color: #1e3a5f; /* Fondo azul marino al pasar el mouse */
-    color: white; /* Texto blanco */
+    background-color: #1e3a5f; 
+    color: white; 
 }
 
 
@@ -74,62 +74,62 @@
 
 
 
-/* Contenedor de la tabla */
+/*Para las tablas*/
 .table-container {
     
-    width: 80%; /* Porcentaje para que sea responsiva */
-    max-width: 1200px; /* Tamaño máximo */
-    margin: 0 auto; /* Centrar horizontalmente */
-    padding: 20px; /* Espaciado interno */
+    width: 80%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
 }
 
-/* Estilo de la tabla */
+
 .custom-table {
-    width: 100%; /* Hacer que la tabla ocupe el 100% del contenedor */
-    border-collapse: collapse; /* Para eliminar el espacio entre celdas */
+    width: 100%; 
+    border-collapse: collapse; 
 }
 
-/* Estilo del encabezado */
+
 .custom-table thead {
-    background-color: #1e3a5f; /* Azul marino */
+    background-color: #1e3a5f; 
 }
 
 .custom-table thead th {
-    color: white; /* Texto blanco */
-    padding: 10px; /* Espaciado interno */
-    text-align: center; /* Centrar texto en el encabezado */
+    color: white; 
+    padding: 10px; 
+    text-align: center; 
 }
 
-/* Estilo de las celdas */
+
 .custom-table tbody tr:nth-child(even) {
-    background-color: #f0f4f8; /* Gris claro */
+    background-color: #f0f4f8; 
 }
 
 .custom-table tbody tr:nth-child(odd) {
-    background-color: #e2f0f7; /* Azul marino claro */
+    background-color: #e2f0f7; 
 }
 
 .custom-table tbody td {
-    padding: 10px; /* Espaciado interno */
-    color: black; /* Texto negro */
-    text-align: center; /* Centrar el texto dentro de las celdas */
-    border: 1px solid #ccc; /* Línea de separación en gris claro */
+    padding: 10px; 
+    color: black; 
+    text-align: center; 
+    border: 1px solid #ccc; 
 }
 
-/* Estilo para los botones en la tabla */
+
 .custom-table tbody td button {
-    padding: 5px 10px; /* Espaciado del botón */
-    background-color: #1e3a5f; /* Azul marino */
-    color: white; /* Texto blanco */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de puntero */
-    transition: background-color 0.3s; /* Efecto de transición */
+    padding: 5px 10px; 
+    background-color: #1e3a5f; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
 }
 
-/* Efecto hover para los botones */
+
 .custom-table tbody td button:hover {
-    background-color: #14273c; /* Cambia a un azul más oscuro al pasar el mouse */
+    background-color: #14273c; 
 }
 
 
@@ -141,68 +141,68 @@
 
 
 
-/* Estilo del Modal */
+/*Los modales*/
 .modal_pnl {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Fijo */
-    z-index: 1; /* Encima de todo */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Alto completo */
-    overflow: auto; /* Habilita scroll si es necesario */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con opacidad */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .modal-content_pnl {
-    background-color: white; /* Fondo blanco */
-    margin: 15% auto; /* Margen en el centro */
+    background-color: white; 
+    margin: 15% auto; 
     padding: 20px;
-    border: 1px solid #1e3a5f; /* Borde azul marino */
-    width: 80%; /* Ancho */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    border-radius: 10px; /* Bordes redondeados */
+    border: 1px solid #1e3a5f; 
+    width: 80%; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px; 
 }
 
-/* Estilos específicos dentro del modal */
+
 .modal-content_pnl h5 {
-    color: #1e3a5f; /* Azul marino para el título */
+    color: #1e3a5f; 
 }
 
 .modal-content_pnl p {
-    color: #333; /* Color del texto del párrafo */
+    color: #333; 
 }
 
-/* Botones del modal */
+
 button {
-    padding: 10px 15px; /* Espaciado del botón */
-    margin: 5px; /* Espaciado entre botones */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de puntero */
-    transition: background-color 0.3s; /* Efecto de transición */
+    padding: 10px 15px; 
+    margin: 5px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
 }
 
 #btn-confirmar-publicar, #btn-confirmar-borrar, #btn-cerrar-modal-exito_borrade {
-    background-color: #1e3a5f; /* Azul marino */
-    color: white; /* Texto blanco */
+    background-color: #1e3a5f; 
+    color: white; 
 }
 
 #btn-cancelar-publicar {
-    background-color: #ccc; /* Gris claro */
-    color: black; /* Texto negro */
+    background-color: #ccc; 
+    color: black; 
 }
 
-/* Efecto hover para botones */
+
 #btn-confirmar-publicar:hover, #btn-confirmar-borrar:hover, #btn-cerrar-modal-exito_borrade:hover {
-    background-color: #14273c; /* Azul más oscuro al pasar el mouse */
+    background-color: #14273c; 
 }
 
 #btn-cancelar-publicar:hover {
-    background-color: #b3b3b3; /* Cambia a un gris más oscuro al pasar el mouse */
+    background-color: #b3b3b3; 
 }
 
-/* Estilo para el botón de cerrar */
+
 .close {
     color: #aaa;
     float: right;
@@ -221,92 +221,92 @@ button {
 
 .btn-publicar.disabled,
 .btn-borrar.disabled {
-    background-color: #ccc; /* Color de fondo gris */
-    color: #777; /* Color del texto en gris más oscuro */
-    cursor: not-allowed; /* Cambia el cursor para indicar que no se puede interactuar */
-    opacity: 0.6; /* Aplica un efecto de opacidad */
-    border: none; /* Elimina el borde */
+    background-color: #ccc; 
+    color: #777; 
+    cursor: not-allowed; 
+    opacity: 0.6; 
+    border: none; 
 }
 
 .btn-publicar.disabled:hover,
 .btn-borrar.disabled:hover {
-    background-color: #ccc; /* Mantiene el color gris al pasar el mouse */
+    background-color: #ccc; 
 }
 
 
 
-/* Contenedor del formulario */
+/*Para el formulario*/
 .form-container {
-    display: flex; /* Usar flex para centrar el contenedor */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-     /* Altura completa de la ventana */
-    padding: 20px; /* Espaciado alrededor */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+     
+    padding: 20px; 
 }
 
-/* Contenido del formulario */
+
 .form-content {
-    background-color: white; /* Fondo blanco */
-    padding: 20px; /* Espaciado interno */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), /* Sombra sutil */
-                0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    width: 100%; /* Hacer que ocupe el 100% del contenedor */
-    max-width: 400px; /* Ancho máximo del formulario */
+    background-color: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 
+                0 4px 20px rgba(0, 0, 0, 0.2); 
+    width: 100%; 
+    max-width: 400px; 
 }
 
-/* Estilo de los inputs */
+
 .form-content input {
-    width: 100%; /* Hacer que los inputs ocupen el 100% del contenedor */
-    padding: 10px; /* Espaciado interno */
-    margin-bottom: 15px; /* Espacio entre inputs */
-    border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 5px; /* Bordes redondeados */
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
 }
 
-/* Estilo de las etiquetas */
+
 .form-content label {
-    margin-bottom: 5px; /* Espacio entre etiqueta y input */
-    color: #1e3a5f; /* Color azul marino para las etiquetas */
-    font-weight: bold; /* Negrita para las etiquetas */
+    margin-bottom: 5px; 
+    color: #1e3a5f; 
+    font-weight: bold; 
 }
 
-/* Estilo del botón */
+
 .form-content button {
-    background-color: #1e3a5f; /* Azul marino */
-    color: white; /* Texto blanco */
-    padding: 10px 15px; /* Espaciado del botón */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de puntero */
-    transition: background-color 0.3s; /* Efecto de transición */
+    background-color: #1e3a5f; 
+    color: white; 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
 }
 
-/* Efecto hover para el botón */
+
 .form-content button:hover {
-    background-color: #14273c; /* Azul más oscuro al pasar el mouse */
+    background-color: #14273c; 
 }
 
 
 .modal_ex {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Fijo en la pantalla */
-    z-index: 1000; /* Encima de otros elementos */
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
     left: 0;
     top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Alto completo */
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.7); 
 }
 
 .modal-content_ex {
     background-color: #fff;
-    margin: 15% auto; /* Centrado */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Ancho del modal */
-    max-width: 500px; /* Ancho máximo */
-    text-align: center; /* Centrar texto */
+    width: 80%; 
+    max-width: 500px; 
+    text-align: center; 
 }
 
 .close-button {
@@ -326,7 +326,7 @@ button {
 
 button {
     padding: 10px 15px;
-    background-color: #1b0064; /* Color verde */
+    background-color: #1b0064; 
     color: white;
     border: none;
     cursor: pointer;
@@ -334,11 +334,65 @@ button {
 }
 
 button:hover {
-    background-color: #3d22ac; /* Color verde más oscuro al pasar el mouse */
+    background-color: #3d22ac; 
 }
 
 
 #btnAdd{
     font-weight: bold;
     margin-left: 160px;
+}
+
+
+
+
+.card-container_ds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card_ds {
+    width: 32%; 
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-inner_ds {
+    display: flex;
+    align-items: center;
+}
+
+.card-icon_ds {
+    width: 25%; 
+    background-color: #007bff;
+    height: 100px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    border-radius: 6px;
+    margin-left: 5px;
+}
+
+.card-content_ds {
+    width: 75%; 
+    padding: 10px;
+}
+
+.card-content_ds h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.card-content_ds p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
 }
