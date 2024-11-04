@@ -197,7 +197,7 @@ async function actualizarClase(claveAntes) {
     const claveExistente = clases.some(clase => clase.claveAcceso === txtClave);
     
     if (claveExistente || txtClave === claveAntes) {
-        mostrarModal("Esa clave no es válida");
+        mostrarModal("Esa clave no es válida, si va a guardar los cambios cree una nueva (modifique)");
     } else {
         // Buscar la clase a actualizar por claveAcceso
         const claseAActualizar = clases.find(clase => clase.claveAcceso === claveAntes);
