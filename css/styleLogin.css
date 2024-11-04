@@ -15,26 +15,32 @@
     box-sizing: border-box;
 }
 
+/* Elimina flex del body */
 body {
     font-family: Arial, sans-serif;
-    height: 100vh;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1e3a5f; 
+    flex-direction: column; /* Apila los elementos en una columna */
+    justify-content: space-between; /* Separa el contenido principal del footer */
+    background-color: #1e3a5f;
+    margin: 0;
 }
 
 .form-container {
     background-color: #fff;
-    border-radius: 20px; 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     width: 55%;
-    height: 550px;
-
-    justify-content: center;
-    align-items: center;
     padding: 20px;
+    margin: auto; /* Centra el formulario */
 }
+
+footer {
+    margin-top: 20px;
+    width: 100%; /* Asegura que el footer ocupe todo el ancho */
+    position: relative; /* O posición fija si deseas un footer "sticky" */
+}
+
 
 form {
     width: 100%;
