@@ -305,6 +305,9 @@ const db = getFirestore(app);
 //Exportar db para que puedas usarlo en tu archivo JS
 export { db };
 
+let idExamPre=getRandomNumberString();
+console.log(idExamPre);
+
 document.getElementById('baseForm').addEventListener('submit', async function(event) {
     event.preventDefault(); //Evita el envío del formulario
 
@@ -378,7 +381,7 @@ document.getElementById('baseForm').addEventListener('submit', async function(ev
             opciones: opciones,
             opcionCorrecta: opcionCorrecta, 
             tipoPregunta: cmbTipoPregunta,
-            idExam: "nono"
+            idExam: idExamPre
         });
         console.log("Documento agregado con ID: ", docRef.id);
 
@@ -400,7 +403,7 @@ async function obtePreguntas() {
         const data = doc.data();
         
         // Filtrar las preguntas cuyo atributo 'idExam' sea "none"
-        if (data.idExam === 'nono') {
+        if (data.idExam === idExamPre) {
             preguntas.push({ id: doc.id, ...data }); // Agrega solo las preguntas que tienen 'idExam' en "none"
         }
     });
@@ -1100,7 +1103,7 @@ document.getElementById('btnSubirEx').addEventListener('click', async function(e
         const preguntasSnapshot = await getDocs(collection(db, "PreguntasFinal"));
         preguntasSnapshot.forEach(async (doc) => {
             const data = doc.data();
-            if (data.idExam === 'nono') {
+            if (data.idExam === idExamPre) {
                 await updateDoc(doc.ref, {
                     idExam: docRef.id
                 });
@@ -1129,7 +1132,13 @@ document.getElementById('btnSubirEx').addEventListener('click', async function(e
 
 
 
-
+function getRandomNumberString() {
+    // Genera un número aleatorio entre 1 y 10,000
+    const randomNumber = Math.floor(Math.random() * 10000) + 1;
+    
+    // Convierte el número a una cadena y lo retorna
+    return randomNumber.toString();
+  }
 
 
 
@@ -1141,7 +1150,7 @@ async function borrarPreguntasSinExamen() {
         const data = doc.data();
         
         // Verificar si el atributo 'idExam' es 'none'
-        if (data.idExam === 'nono') {
+        if (data.idExam === idExamPre) {
             const docRef = doc.ref; // Obtén la referencia del documento
             batch.delete(docRef); // Agregar la eliminación al batch
         }
